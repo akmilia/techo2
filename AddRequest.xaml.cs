@@ -24,5 +24,13 @@ namespace techo
         {
             InitializeComponent();
         }
+        public void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            RequestsList.DataGrid.Update();
+
+            RequestsList requestsList = new RequestsList();
+            requestsList.Show();
+            this.Close();
+        }
     }
 }

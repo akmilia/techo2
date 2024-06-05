@@ -30,7 +30,7 @@
         <TextBox Grid.Column="1" Grid.Row="3" Name="LoginTextBox" Margin="0,0,0,10"/>
         
         <Label Grid.Column="0" Grid.Row="4" Content="Пароль "/>
-        <PasswordBox Grid.Column="1" Grid.Row="4" Name="PasswordTextBox" Margin="0,0,0,10"/>
+        <PasswordBox Grid.Column="1" Grid.Row="4" Name="PasswordTextBox"  Margin="0,0,0,10"/>
 
         <Label Grid.Column="0" Grid.Row="5" Content="Роль"/> 
         <ComboBox Grid.Column="1" Grid.Row="5" Name="TypeComboBox" Margin="0,0,0,10">
