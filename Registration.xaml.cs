@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -27,62 +28,83 @@ namespace techo
         public void RegisterButton_Click (object sender, RoutedEventArgs e)
         {
             try
-            {            
+            {
                 using (techoEntities db = new techoEntities())
                 {
-                    {
-                    MessageBoxButton btn = MessageBoxButton.OK;
-                    MessageBoxImage ico = MessageBoxImage.Information;
+
+
+                    int maxUserId = db.Users.Max(u => (int?)u.UserID) ?? 0;
+                    int nextUserId = maxUserId + 1;
+
                     string caption = "Дата сохранения";
-                    if (string.IsNullOrWhiteSpace(PasswordTextBox.Text) || string.IsNullOrWhiteSpace(LoginTextBox.Text)
-                            || string.IsNullOrWhiteSpace(Patronymic.Text) || string.IsNullOrWhiteSpace(PhoneNumber.Text))
+                    if (string.IsNullOrWhiteSpace(PasswordTextBox.Password) ||
+                        string.IsNullOrWhiteSpace(LoginTextBox.Text) ||
+                        string.IsNullOrWhiteSpace(SecondName.Text) ||
+                        string.IsNullOrWhiteSpace(PhoneNumberTextBox.Text))
                     {
                         MessageBox.Show("Все поля обязательны для ввода.");
                         PasswordTextBox.Password = "";
-                        Surname.Text = "";
-                       
-                        return;
-                    }
-                    if (!Regex.IsMatch(FirstName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
-                    {
-                        MessageBox.Show("Пожалуйста,введите имя повторно!", caption, btn, ico);
                         FirstName.Text = "";
                         return;
                     }
 
-                    if (!Regex.IsMatch(Surname.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
+                    if (!Regex.IsMatch(FirstName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
                     {
-                        MessageBox.Show("Пожалуйста, введите фамилию правильно!", caption, btn, ico);
-                        Surname.Text = "";
+                        MessageBox.Show("Пожалуйста, введите имя правильно!", caption, MessageBoxButton.OK, MessageBoxImage.Information);
+                        FirstName.Text = "";
                         return;
                     }
 
-                    if (!Regex.IsMatch(Patronymic.Text, "^[А-Яа-яA-Za-z]{5,20}$"))
+                    if (!Regex.IsMatch(SecondName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
                     {
-                        MessageBox.Show("Пожалуйста,введите отчество повторно!", caption, btn, ico);
-                        Patronymic.Text = "";
+                        MessageBox.Show("Пожалуйста, введите фамилию правильно!", caption, MessageBoxButton.OK, MessageBoxImage.Information);
+                        SecondName.Text = "";
                         return;
                     }
 
-                    if (!Regex.IsMatch(PhoneNumber.Text, @"^\d{11}$"))
+                    if (!Regex.IsMatch(ThirdName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
                     {
-                        MessageBox.Show("Пожалуйста, введите телефон правильно!", caption, btn, ico);
-                        PhoneNumber.Text = "";
+                        MessageBox.Show("Пожалуйста, введите отчество правильно!", caption, MessageBoxButton.OK, MessageBoxImage.Information);
+                        ThirdName.Text = "";
                         return;
                     }
 
-                    Clients clients = new Clients()
+                    if (!Regex.IsMatch(PhoneNumberTextBox.Text, @"^\d{11}$"))
                     {
-                        SName = Surname.Text,
-                        FName = FirstName.Text,
-                        TName = Patronymic.Text,
-                        Phone = PhoneNumber.Text
+                        MessageBox.Show("Пожалуйста, введите телефон правильно!", caption, MessageBoxButton.OK, MessageBoxImage.Information);
+                        PhoneNumberTextBox.Text = "";
+                        return;
+                    }
+
+                    // Определяем роль пользователя
+                    int typeId = 1; // Default
+                    switch (TypeComboBox.Text)
+                    {
+                        case "Менеджер": typeId = 1; break;
+                        case "Мастер": typeId = 2; break;
+                        case "Оператор": typeId = 3; break;
+                        case "Заказчик": typeId = 4; break;
+                    }
+
+                    Users newUser = new Users
+                    {
+                        UserID = nextUserId,
+                        FIO = $"{FirstName.Text} {SecondName.Text} {ThirdName.Text}",
+                        Phone = PhoneNumberTextBox.Text,
+                        TypeID = typeId,
+                        Autorization = new Autorization
+                        {
+                            Login = LoginTextBox.Text,
+                            Password = PasswordTextBox.Password
+                        }
                     };
-                    db.Clients.Add(clients);
-                    db.SaveChanges();
-                    MessageBox.Show("Успешно добавлено");
 
-                    Client client = new Client();
+                    db.Users.Add(newUser);
+                    db.SaveChanges();
+                    MessageBox.Show("Успешно зарегистрировано");
+
+
+                  RequestsList   client = new RequestsList();
                     client.Show();
                     this.Close();
                 }
@@ -94,7 +116,7 @@ namespace techo
         }
         public void AuthorizeButton_Click(object sender, RoutedEventArgs e)
         {
-            Autorization autorization = new Autorization();
+            AutorizationWin autorization = new AutorizationWin();
             autorization.Show();
             this.Close();
         }

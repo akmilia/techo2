@@ -8,15 +8,14 @@
          Height="450" Width="800"
          WindowStartupLocation="CenterScreen">
     <StackPanel>
-        
         <DataGrid VerticalAlignment="Top" x:Name="RepairRequestsDataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер заявки" Binding="{Binding RequestID}"/>
-                <DataGridTextColumn Header="Дата добавления" Binding="{Binding DateAdded}"/>
-                <DataGridTextColumn Header="Вид бытовой техники" Binding="{Binding EquipmentType}"/>
-                <DataGridTextColumn Header="Модель бытовой техники" Binding="{Binding EquipmentModel}"/>
+                <DataGridTextColumn Header="Дата добавления" Binding="{Binding StartDate}"/>
+                <DataGridTextColumn Header="Тип устройства" Binding="{Binding HomeTechType.homeTechType1}"/>
+                <DataGridTextColumn Header="Модель устройства" Binding="{Binding HomeTechType.homeTechModel}"/>
                 <DataGridTextColumn Header="Описание проблемы" Binding="{Binding ProblemDescription}"/>
-                <DataGridTextColumn Header="Статус заявки" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Статус заявки" Binding="{Binding StatusID}"/>
             </DataGrid.Columns>
         </DataGrid>
 

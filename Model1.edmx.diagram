@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="90db1f9c68ed494d9e5df64ec0257975" Name="Diagram1">
+      <Diagram DiagramId="be77d322f1d247c4b9b5f940af099d55" Name="Diagram1">
         <EntityTypeShape EntityType="techoModel.Autorization" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="techoModel.Comments" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="techoModel.HomeTechType" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />

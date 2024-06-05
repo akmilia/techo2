@@ -33,7 +33,7 @@
             <Label Grid.Column="0" Grid.Row="3" Content="Дата окончания "/>
             <DatePicker Grid.Column="1" Grid.Row="3" Name="Pronlem" Margin="0,0,0,10"/>
 
-            <Button Grid.Column="1" Grid.Row="4" Content="Изменить"  HorizontalAlignment="Left" Click="Button_Click" Margin="100 10 0 0"/>
+            <Button Grid.Column="1" Grid.Row="4" Content="Изменить"  HorizontalAlignment="Left"  Margin="100 10 0 0"/>
 
         </Grid>
 

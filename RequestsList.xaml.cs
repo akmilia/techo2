@@ -22,12 +22,23 @@ namespace techo
         public RequestsList()
         {
             InitializeComponent();
+            LoadRequests();
         }
+
+        private void LoadRequests()
+        {
+            using (techoEntities db = new techoEntities())
+            {
+                var requests = db.Requests.ToList();
+                RepairRequestsDataGrid.ItemsSource = requests;
+            }
+        }
+    
         public void AddRequestButton_Click(object sender, RoutedEventArgs e)
         {
             AddRequest addRequest = new AddRequest();
             addRequest.Show();
-            this.Close();
+            LoadRequests();
         }
         public void EditRequestButton_Click(object sender, RoutedEventArgs e)
         {
