@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="90db1f9c68ed494d9e5df64ec0257975" Name="Diagram1">
+        <EntityTypeShape EntityType="techoModel.Autorization" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="techoModel.Comments" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="techoModel.HomeTechType" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="techoModel.ReqClient" Width="1.5" PointX="9.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="techoModel.Requests" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="techoModel.Statuses" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="techoModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="techoModel.Types" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="techoModel.Users" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="techoModel.FK_Autorization_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="techoModel.FK_Comments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="techoModel.FK_ReqClient_Requests" ManuallyRouted="false" />
+        <AssociationConnector Association="techoModel.FK_ReqClient_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="techoModel.Reg_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="techoModel.Req_Comments" ManuallyRouted="false" />
+        <AssociationConnector Association="techoModel.Req_HomeTech" ManuallyRouted="false" />
+        <AssociationConnector Association="techoModel.User_Types" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

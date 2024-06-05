@@ -1,0 +1,26 @@
+﻿<Window x:Class="techo.RequestsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:techo"
+        mc:Ignorable="d"
+         Height="450" Width="800"
+         WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        
+        <DataGrid VerticalAlignment="Top" x:Name="RepairRequestsDataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер заявки" Binding="{Binding RequestID}"/>
+                <DataGridTextColumn Header="Дата добавления" Binding="{Binding DateAdded}"/>
+                <DataGridTextColumn Header="Вид бытовой техники" Binding="{Binding EquipmentType}"/>
+                <DataGridTextColumn Header="Модель бытовой техники" Binding="{Binding EquipmentModel}"/>
+                <DataGridTextColumn Header="Описание проблемы" Binding="{Binding ProblemDescription}"/>
+                <DataGridTextColumn Header="Статус заявки" Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button VerticalAlignment="Bottom" Content="Добавить заявку" Margin="0, 30, 0 , 0" Click="AddRequestButton_Click"/>
+        <Button VerticalAlignment="Bottom" Content="Редактировать заявку" Click="EditRequestButton_Click"/>
+    </StackPanel>
+</Window>
