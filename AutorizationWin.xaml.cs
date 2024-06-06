@@ -51,7 +51,7 @@ namespace techo
                         switch (userType)
                         {
                             case 1: // Менеджер
-                                windowToOpen = new AddRequest();
+                                windowToOpen = new RequestListAdmin();
                                 break;
                             case 2: // Мастер
                                 windowToOpen = new MasterWindow();

@@ -27,12 +27,25 @@ namespace techo
 
         private void LoadRequests()
         {
-            using (techoEntities db = new techoEntities())
+            try
             {
-                var requests = db.Requests.ToList();
-                RepairRequestsDataGrid.ItemsSource = requests;
+                using (techoEntities db = new techoEntities())
+                {
+                    
+                      var requests = db.Requests
+                             .Include("HomeTechType")
+                             .Include("Statuses")
+                             .ToList();
+
+                    RepairRequestsDataGrid.ItemsSource = requests;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Возникла ошибка: {ex.Message}");
             }
         }
+
     
         public void AddRequestButton_Click(object sender, RoutedEventArgs e)
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:techo"
         mc:Ignorable="d"
-         Height="450" Width="800"
+         Height="450" Width="900"
          WindowStartupLocation="CenterScreen">
     <StackPanel>
         <DataGrid VerticalAlignment="Top" x:Name="RepairRequestsDataGrid" AutoGenerateColumns="False">
@@ -14,7 +14,9 @@
                 <DataGridTextColumn Header="Дата добавления" Binding="{Binding StartDate}"/>
                 <DataGridTextColumn Header="Тип устройства" Binding="{Binding HomeTechType.homeTechType1}"/>
                 <DataGridTextColumn Header="Модель устройства" Binding="{Binding HomeTechType.homeTechModel}"/>
+
                 <DataGridTextColumn Header="Описание проблемы" Binding="{Binding ProblemDescription}"/>
+                <DataGridTextColumn Header="Комплектующие части" Binding="{Binding RepairParts}"/>
                 <DataGridTextColumn Header="Статус заявки" Binding="{Binding StatusID}"/>
             </DataGrid.Columns>
         </DataGrid>
