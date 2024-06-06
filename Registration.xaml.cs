@@ -45,7 +45,7 @@ namespace techo
                         MessageBox.Show("Все поля обязательны для ввода.");
                         PasswordTextBox.Password = "";
                         FirstName.Text = "";
-                        return;
+                            return;
                     }
 
                     if (!Regex.IsMatch(FirstName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
