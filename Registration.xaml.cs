@@ -48,20 +48,19 @@ namespace techo
                         return;
                     }
 
-                    if (!Regex.IsMatch(FirstName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
-                    {
-                        MessageBox.Show("Пожалуйста, введите имя правильно!", caption, MessageBoxButton.OK, MessageBoxImage.Information);
-                        FirstName.Text = "";
-                        return;
-                    }
-
                     if (!Regex.IsMatch(SecondName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
                     {
                         MessageBox.Show("Пожалуйста, введите фамилию правильно!", caption, MessageBoxButton.OK, MessageBoxImage.Information);
                         SecondName.Text = "";
                         return;
                     }
-
+                    if (!Regex.IsMatch(FirstName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
+                    {
+                        MessageBox.Show("Пожалуйста, введите имя правильно!", caption, MessageBoxButton.OK, MessageBoxImage.Information);
+                        FirstName.Text = "";
+                        return;
+                    }
+                    
                     if (!Regex.IsMatch(ThirdName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
                     {
                         MessageBox.Show("Пожалуйста, введите отчество правильно!", caption, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -71,13 +70,18 @@ namespace techo
 
                     if (!Regex.IsMatch(PhoneNumberTextBox.Text, @"^\d{11}$"))
                     {
-                        MessageBox.Show("Пожалуйста, введите телефон правильно!", caption, MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Пожалуйста, введите телефон правильно!(11 цифр)", caption, MessageBoxButton.OK, MessageBoxImage.Information);
                         PhoneNumberTextBox.Text = "";
                         return;
                     }
+                    if (!ValidatePassword(PasswordTextBox.Password))
+                    {
+                       
+                        PasswordTextBox.Password = "";
+                        return;
+                    }
 
-                    // Определяем роль пользователя
-                    int typeId = 1; // Default
+                    int typeId = 1; 
                     switch (TypeComboBox.Text)
                     {
                         case "Менеджер": typeId = 1; break;
@@ -99,13 +103,35 @@ namespace techo
                         }
                     };
 
+
+
                     db.Users.Add(newUser);
                     db.SaveChanges();
                     MessageBox.Show("Успешно зарегистрировано");
 
+                    // Определяем роль пользователя
+                    var userType = newUser.TypeID;
+                    Window windowToOpen;
 
-                  RequestsList   client = new RequestsList();
-                    client.Show();
+                    switch (userType)
+                    {
+                        case 1: // Менеджер
+                            windowToOpen = new RequestListAdmin();
+                            break;
+                        case 2: // Мастер
+                            windowToOpen = new MasterWindow();
+                            break;
+                        case 3: // Оператор
+                            windowToOpen = new RequestListAdmin();
+                            break;
+                        case 4: // Заказчик
+                            windowToOpen = new RequestsList();
+                            break;
+                        default:
+                            throw new InvalidOperationException("Неизвестная роль пользователя");
+                    }
+
+                    windowToOpen.Show();
                     this.Close();
                 }
             }
@@ -119,6 +145,65 @@ namespace techo
             AutorizationWin autorization = new AutorizationWin();
             autorization.Show();
             this.Close();
+        }
+
+
+
+        public bool ValidatePassword(string x)
+        {
+            bool hasDigit = false;
+            bool hasLower = false;
+            bool hasUpper = false;
+            bool hasSpecialChar = false;
+            int kol = x.Length;
+
+            foreach (char c in x)
+            {
+                if (char.IsDigit(c))
+                {
+                    hasDigit = true;
+                }
+                else if (char.IsLower(c))
+                {
+                    hasLower = true;
+                }
+                else if (char.IsUpper(c))
+                {
+                    hasUpper = true;
+                }
+                else if (!char.IsLetterOrDigit(c) && !char.IsWhiteSpace(c))
+                {
+                    hasSpecialChar = true;
+                }
+            }
+
+            if (!hasDigit)
+            {
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать цифры");
+                return false;
+            }
+            else if (!hasLower)
+            {
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать строчные буквы");
+                return false;
+            }
+            else if (!hasUpper)
+            {
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать заглавные буквы");
+                return false;
+            }
+            else if (!hasSpecialChar)
+            {
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать специальные символы");
+                return false;
+            }
+            else if (kol < 8 || kol > 20)
+            {
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать от 8 до 20 символов");
+                return false;
+            }
+
+            return true;
         }
     }
 }
