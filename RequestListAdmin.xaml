@@ -6,8 +6,21 @@
         xmlns:local="clr-namespace:techo"
         mc:Ignorable="d"
         Title="RequestListAdmin" Height="450" Width="800"
-         WindowStartupLocation="CenterScreen">
-    <Grid>
-        
-    </Grid>
+             WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <DataGrid VerticalAlignment="Top" x:Name="RepairRequestsDataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер заявки" Binding="{Binding RequestID}"/>
+                <DataGridTextColumn Header="Дата добавления" Binding="{Binding StartDate}"/>
+                <DataGridTextColumn Header="Тип устройства" Binding="{Binding TypeName}" />
+                <DataGridTextColumn Header="Модель устройства" Binding="{Binding ModelName}"/>
+
+                <DataGridTextColumn Header="Описание проблемы" Binding="{Binding ProblemDescription}"/>
+                <DataGridTextColumn Header="Комплектующие части" Binding="{Binding RepairParts}"/>
+                <!--<DataGridTextColumn Header="Статус заявки" Binding="{Binding StatusName}" />-->
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button VerticalAlignment="Bottom" Content="Редактировать заявку" Click="Button_Click"/>
+    </StackPanel>
 </Window>

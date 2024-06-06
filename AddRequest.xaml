@@ -1,17 +1,20 @@
 ﻿<Window x:Class="techo.AddRequest"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Добавить заявку" Height="450" Width="800">
-    <UniformGrid Rows="6" Columns="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+        Title="Добавить заявку" Height="450" Width="800"> 
+    <StackPanel Margin="40" >
         <TextBlock Text="Тип техники:" VerticalAlignment="Center"/>
-        <ComboBox Name="homeTechType1" DisplayMemberPath="homeTechType1" SelectedValuePath="HomeTechID" Margin="5"/>
+        <ComboBox Name="homeTechType1" DisplayMemberPath="homeTechType1" SelectedValuePath="HomeTechID" Margin="5"/> 
+        
         <TextBlock Text="Новый тип техники:" VerticalAlignment="Center"/>
-        <TextBox Name="newHomeTechType" Margin="5"/>
-        <Button Name="AddNewTypeButton" Content="Добавить новый тип техники" Click="AddNewTypeButton_Click" Margin="5"/>
+        <Button Name="AddNewTypeButton" Content="Добавить новый тип техники" Click="AddNewTypeButton_Click" Margin="5"/> 
+        
         <TextBlock Text="Модель устройства:" VerticalAlignment="Center"/>
-        <TextBox Name="homeTechModel" Margin="5"/>
+        <TextBox Name="homeTechModel" Margin="5"/> 
+        
         <TextBlock Text="Описание проблемы:" VerticalAlignment="Center"/>
-        <TextBox Name="problemDescription" Margin="5"/>
+        <TextBox Name="problemDescription" Margin="5"/> 
+        
         <Button Name="AddButton" Content="Добавить заявку" Click="AddButton_Click" Margin="5"/>
-    </UniformGrid>
+    </StackPanel>
 </Window>

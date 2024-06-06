@@ -1,14 +1,14 @@
 ﻿<Window x:Class="techo.Registration"     
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       Height="361" Width="524">
+       Height="361" Width="524" WindowStartupLocation="CenterScreen">
     <StackPanel Orientation="Vertical" Margin="10">
         <Label Content="Регистрация" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Padding="20"/>
         <UniformGrid Columns="2">
             <TextBlock>Фамилия</TextBlock>
-            <TextBox x:Name="FirstName"/>
-            <TextBlock>Имя</TextBlock>
             <TextBox x:Name="SecondName"/>
+            <TextBlock>Имя</TextBlock>
+            <TextBox x:Name="FirstName"/>
             <TextBlock>Отчество</TextBlock>
             <TextBox x:Name="ThirdName"/>
             <TextBlock>Номер телефона</TextBlock>

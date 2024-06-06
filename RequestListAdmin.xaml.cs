@@ -22,6 +22,44 @@ namespace techo
         public RequestListAdmin()
         {
             InitializeComponent();
+            LoadRequests();
+        }
+        private void LoadRequests()
+        {
+            try
+            {
+                using (techoEntities db = new techoEntities())
+                {
+                    var requests = db.Requests
+                      .Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
+                      {
+                          RequestID = r.RequestID,
+                          TypeName = t.homeTechType1,
+                          ModelName = t.homeTechModel,
+                          StartDate = r.StartDate,
+                          ProblemDescription = r.ProblemDescription,
+                          RepairParts = r.RepairParts,
+                          //StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
+                          //
+                      })
+                        .ToList();
+
+
+
+                    RepairRequestsDataGrid.ItemsSource = requests;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Возникла ошибка: {ex.Message}");
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            EditRequestAdmin addRequest = new EditRequestAdmin();
+            addRequest.Show();
+            this.Close();
         }
     }
 }

@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace techo
 {
-    /// <summary>
-    /// Логика взаимодействия для AutorizationWin.xaml
-    /// </summary>
     public partial class AutorizationWin : Window
     {
         public AutorizationWin()
@@ -60,7 +57,7 @@ namespace techo
                                 windowToOpen = new RequestListAdmin();
                                 break;
                             case 4: // Заказчик
-                                windowToOpen = new RequestsList();
+                                windowToOpen = new RequestsList(user.UserID);
                                 break;
                             default:
                                 throw new InvalidOperationException("Неизвестная роль пользователя");
@@ -79,9 +76,6 @@ namespace techo
             {
                 MessageBox.Show($"Возникла ошибка: {ex.Message}");
             }
-            //RequestsList1 registrationWindow = new RequestsList1();
-            //registrationWindow.Show();
-            //this.Close();
         }
 
 
