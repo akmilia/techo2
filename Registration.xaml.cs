@@ -25,6 +25,8 @@ namespace techo
         {
             InitializeComponent();
         }
+
+
         public void RegisterButton_Click (object sender, RoutedEventArgs e)
         {
             try

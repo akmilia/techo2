@@ -26,7 +26,7 @@ namespace techo
     /// </summary>
     public partial class RequestsList : Window
     {   
-        private int ID = 0; 
+        private int ID; 
 
         public RequestsList(int id)
         {
@@ -37,7 +37,7 @@ namespace techo
             //RepairRequestsDataGrid.Columns.Add("RequestID"); 
         }
 
-        private void LoadRequests()
+        public void LoadRequests()
         {
             try
             {
@@ -65,6 +65,7 @@ namespace techo
                           //StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
                           //
                       })
+                      .Where(r => r.RequestID == ID)
                         .ToList();
 
 

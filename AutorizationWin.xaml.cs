@@ -19,15 +19,19 @@ namespace techo
         public AutorizationWin()
         {
             InitializeComponent();
+            RegistrationButton = new Button();
+            AuthorizeButton = new Button();
+            PasswordBox = new PasswordBox();
+            LoginTextBox = new TextBox();
         }
 
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
+        public void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
             Registration registrationWindow = new Registration();
             registrationWindow.Show();
             this.Close();
         }
-        private void AuthorizeButton_Click(object sender, RoutedEventArgs e)
+        public  void AuthorizeButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
