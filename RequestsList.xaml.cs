@@ -53,8 +53,8 @@ namespace techo
                     //    RepairRequestsDataGrid.Items.Add(newRow);
 
                     //}
-                    var requests = db.Requests
-                      .Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
+                    var requests = db.Requests.Join(db.ReqClient, a => a.RequestID, b => b.RequestID, (a, b) && db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
+                     
                       {
                           RequestID = r.RequestID,
                           TypeName = t.homeTechType1,
