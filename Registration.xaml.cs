@@ -39,7 +39,7 @@ namespace techo
                         string.IsNullOrWhiteSpace(SecondName.Text) ||
                         string.IsNullOrWhiteSpace(PhoneNumberTextBox.Text))
                     {
-                        MessageBox.Show("Все поля обязательны для ввода.");
+                        MessageBox.Show("Все поля обязательны для ввода и пробелы запрещены.");
                         return;
                     }
 
@@ -110,13 +110,13 @@ namespace techo
                     {
                        
                         UserID = nextUserId,
-                        FIO = $"{FirstName.Text} {SecondName.Text} {ThirdName.Text}",
+                        FIO = $"{FirstName.Text.Trim()} {SecondName.Text.Trim()} {ThirdName.Text.Trim()}",
                         Phone = PhoneNumberTextBox.Text,
                         TypeID = 1,
                         Autorization = new Autorization
                         {
-                            Login = LoginTextBox.Text,
-                            Password = PasswordTextBox.Password
+                            Login = LoginTextBox.Text.Trim(),
+                            Password = PasswordTextBox.Password.Trim()
                         }
                     };
                     //db.Autorization.Add(newUser.Autorization);

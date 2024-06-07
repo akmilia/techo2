@@ -19,10 +19,10 @@ namespace techo
         public AutorizationWin()
         {
             InitializeComponent();
-            RegistrationButton = new Button();
-            AuthorizeButton = new Button();
-            PasswordBox = new PasswordBox();
-            LoginTextBox = new TextBox();
+            //RegistrationButton = new Button();
+            //AuthorizeButton = new Button();
+            //PasswordBox = new PasswordBox();
+            //LoginTextBox = new TextBox();
         }
 
         public void RegistrationButton_Click(object sender, RoutedEventArgs e)
@@ -37,8 +37,8 @@ namespace techo
             {
                 using (techoEntities db = new techoEntities())
                 {
-                    string login = LoginTextBox.Text;
-                    string password = PasswordBox.Password;
+                    string login = LoginTextBox.Text.Trim();
+                    string password = PasswordBox.Password.Trim();
 
                     var user = db.Autorization.FirstOrDefault(a => a.Login == login && a.Password == password);
                     if (user != null)
@@ -79,6 +79,7 @@ namespace techo
             catch (Exception ex)
             {
                 MessageBox.Show($"Возникла ошибка: {ex.Message}");
+                return;
             }
         }
 
