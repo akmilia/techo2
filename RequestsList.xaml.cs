@@ -43,21 +43,33 @@ namespace techo
             {
                 using (techoEntities db = new techoEntities())
                 {
+                    //var requests = db.Requests
+                    //.Join(db.ReqClient, a => a.RequestID, b => b.RequestID, (a, b) => a)
+                    //.Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
+                    //{
+                    //    RequestID = r.RequestID,
+                    //    TypeName = t.homeTechType1,
+                    //    ModelName = t.homeTechModel,
+                    //    StartDate = r.StartDate,
+                    //    ProblemDescription = r.ProblemDescription,
+                    //    RepairParts = r.RepairParts,
+                    //    //StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
+                    //})
+                    ////.Where(r => r.RequestID == ID)
+                    //.ToList();
                     var requests = db.Requests
-                    .Join(db.ReqClient, a => a.RequestID, b => b.RequestID, (a, b) => a)
-                    .Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
-                    {
-                        RequestID = r.RequestID,
-                        TypeName = t.homeTechType1,
-                        ModelName = t.homeTechModel,
-                        StartDate = r.StartDate,
-                        ProblemDescription = r.ProblemDescription,
-                        RepairParts = r.RepairParts,
-                        //StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
-                    })
-                    //.Where(r => r.RequestID == ID)
-                    .ToList();
-
+                  .Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
+                  {
+                      RequestID = r.RequestID,
+                      TypeName = t.homeTechType1,
+                      ModelName = t.homeTechModel,
+                      StartDate = r.StartDate,
+                      ProblemDescription = r.ProblemDescription,
+                      RepairParts = r.RepairParts,
+                      //StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
+                  })
+                  //.Where(r => r.RequestID == ID)
+                  .ToList();
 
                     RepairRequestsDataGrid.ItemsSource = requests;
                 }
