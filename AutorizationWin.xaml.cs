@@ -45,7 +45,7 @@ namespace techo
                     {
                         MessageBox.Show("Успешно вошли в систему");
 
-                        // Определяем роль пользователя
+                        
                         var userType = user.Users.TypeID;
                         Window windowToOpen;
 
