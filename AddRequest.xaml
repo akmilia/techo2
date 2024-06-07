@@ -7,6 +7,8 @@
         <ComboBox Name="homeTechType1" DisplayMemberPath="homeTechType1" SelectedValuePath="HomeTechID" Margin="5"/> 
         
         <TextBlock Text="Новый тип техники:" VerticalAlignment="Center"/>
+        <TextBox Name="newHomeTechType" Margin="5"/>
+
         <Button Name="AddNewTypeButton" Content="Добавить новый тип техники" Click="AddNewTypeButton_Click" Margin="5"/> 
         
         <TextBlock Text="Модель устройства:" VerticalAlignment="Center"/>

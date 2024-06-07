@@ -23,7 +23,7 @@
         <TextBox Grid.Column="1" Grid.Row="1" Name="LoginTextBox" Margin="0,0,0,10"/>
         <Label Grid.Column="0" Grid.Row="2" Content="Пароль"/>
         <PasswordBox Grid.Column="1" Grid.Row="2" Name="PasswordBox" Margin="0,0,0,10"/>
-        <Button Grid.Column="1" Grid.Row="3" Content="Войти" Click="AuthorizeButton_Click"/>
-        <Button Grid.Column="1" Grid.Row="5" Content="Еще не зарегистрированы?" Click="RegistrationButton_Click" Background="AliceBlue" Margin="10"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="Войти" x:Name="AuthorizeButton" Click="AuthorizeButton_Click"/>
+        <Button Grid.Column="1" Grid.Row="5" Content="Еще не зарегистрированы?" x:Name="RegistrationButton" Click="RegistrationButton_Click" Background="AliceBlue" Margin="10"/>
     </Grid>
 </Window>

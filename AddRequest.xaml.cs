@@ -16,9 +16,9 @@ namespace techo
             LoadHomeTechTypes();
         }
 
-        private List<HomeTechType> homeTechTypes;
+        public List<HomeTechType> homeTechTypes;
 
-        private void LoadHomeTechTypes()
+        public void LoadHomeTechTypes()
         {
             using (techoEntities db = new techoEntities())
             {
@@ -31,7 +31,7 @@ namespace techo
             }
         }
 
-        private void AddHomeTechType(string techType)
+        public void AddHomeTechType(string techType)
         {
             using (techoEntities db = new techoEntities())
             {
@@ -50,7 +50,7 @@ namespace techo
             }
         }
 
-        private void AddNewRequest(Requests newRequest)
+        public void AddNewRequest(Requests newRequest)
         {
             using (techoEntities db = new techoEntities())
             {
@@ -113,9 +113,10 @@ namespace techo
             {
                 MessageBox.Show($"Возникла ошибка: {ex.Message}");
             }
+           
         }
 
-        private void AddNewTypeButton_Click(object sender, RoutedEventArgs e)
+        public void AddNewTypeButton_Click(object sender, RoutedEventArgs e)
         {
             string newType = newHomeTechType.Text;
             if (!string.IsNullOrWhiteSpace(newType))
