@@ -130,5 +130,10 @@ namespace techo
                 MessageBox.Show("Введите тип техники.");
             }
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

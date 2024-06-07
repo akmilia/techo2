@@ -22,6 +22,7 @@ namespace techo
         public EditRequest()
         {
             InitializeComponent();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using System.Data.Entity.Infrastructure;
 
 namespace techo
 {
@@ -26,12 +27,13 @@ namespace techo
     /// </summary>
     public partial class RequestsList : Window
     {   
-        private int ID; 
-
+        private int ID;
+        
         public RequestsList(int id)
         {
             InitializeComponent();
             LoadRequests(); 
+
 
             ID = id;
             //RepairRequestsDataGrid.Columns.Add("RequestID"); 
@@ -44,7 +46,25 @@ namespace techo
                 using (techoEntities db = new techoEntities())
                 {
                     //var requests = db.Requests
-                    //.Join(db.ReqClient, a => a.RequestID, b => b.RequestID, (a, b) => a)
+                    // .Join(db.ReqClient, r => r.RequestID, rc => rc.RequestID, (r, rc) => r) 
+                    // .Where(rc.RequestID != 0)
+                    // .Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
+                    // {
+                    //     RequestID = r.RequestID,
+                    //     TypeName = t.homeTechType1,
+                    //     ModelName = t.homeTechModel,
+                    //     StartDate = r.StartDate,
+                    //     ProblemDescription = r.ProblemDescription,
+                    //     RepairParts = r.RepairParts,
+                    //     StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
+
+                    // }); 
+
+                    var requests = db.Requests.Where(r=> r.ReqClient.Any(rc=>rc.ClientID == 7)).ToList();
+      
+
+
+                    //  var requests = db.Requests
                     //.Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
                     //{
                     //    RequestID = r.RequestID,
@@ -57,19 +77,6 @@ namespace techo
                     //})
                     ////.Where(r => r.RequestID == ID)
                     //.ToList();
-                  //  var requests = db.Requests
-                  //.Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
-                  //{
-                  //    RequestID = r.RequestID,
-                  //    TypeName = t.homeTechType1,
-                  //    ModelName = t.homeTechModel,
-                  //    StartDate = r.StartDate,
-                  //    ProblemDescription = r.ProblemDescription,
-                  //    RepairParts = r.RepairParts,
-                  //    //StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
-                  //})
-                  ////.Where(r => r.RequestID == ID)
-                  //.ToList();
 
                     RepairRequestsDataGrid.ItemsSource = requests;
                 }

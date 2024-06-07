@@ -73,6 +73,9 @@ namespace techo
                     else
                     {
                         MessageBox.Show("Неверный логин или пароль");
+                        LoginTextBox.Text = "";
+                        PasswordBox.Password = "";
+                        return;
                     }
                 }
             }

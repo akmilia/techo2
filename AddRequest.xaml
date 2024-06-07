@@ -18,6 +18,6 @@
         <TextBox Name="problemDescription" Margin="5"/> 
         
         <Button Name="AddButton" Content="Добавить заявку" Click="AddButton_Click" Margin="5"/>
-        <Button Name="CancelButton" Content="Добавить заявку" Click="AddButton_Click" Margin="5"/>
+        <Button Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Margin="5"/>
     </StackPanel>
 </Window>

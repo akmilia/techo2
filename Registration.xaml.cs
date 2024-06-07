@@ -85,7 +85,7 @@ namespace techo
                         return;
                     }
 
-                    int typeId;
+                    int typeId = 0;
                     switch (TypeComboBox.Text)
                     {
                         case "Менеджер":
@@ -105,14 +105,13 @@ namespace techo
                     int maxUserId = db.Users.Max(u => u.UserID);
                     int nextUserId = maxUserId + 1; 
 
-                    MessageBox.Show("1");
                     Users newUser = new Users
                     {
                        
                         UserID = nextUserId,
                         FIO = $"{FirstName.Text.Trim()} {SecondName.Text.Trim()} {ThirdName.Text.Trim()}",
                         Phone = PhoneNumberTextBox.Text,
-                        TypeID = 1,
+                        TypeID = typeId,
                         Autorization = new Autorization
                         {
                             Login = LoginTextBox.Text.Trim(),
