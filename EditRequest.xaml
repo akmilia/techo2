@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:techo"
         mc:Ignorable="d"
-        Title="EditRequest" Height="450" Width="800"
+         Height="450" Width="800"
          WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid>
@@ -15,26 +15,31 @@
                 <ColumnDefinition Width="0.2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
 
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="1" Content="Тип устройства "/>
-            <Label Grid.Column="1" Grid.Row="1" Name="Type"  Content="{Binding Type}" Margin="0,0,0,10"/>
+            <Label Grid.Column="0" Grid.Row="0" Content="Выберите заявку"/>
+            <ComboBox Grid.Column="1" Grid.Row="0" x:Name="requestsComboBox" Foreground="Black" DisplayMemberPath="RequestID" SelectedValuePath="RequestID"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="Выбрать" Click="Button_Click_2"/>
 
-            <Label Grid.Column="0" Grid.Row="2" Content="Модель устройства "/>
-            <Label Grid.Column="1" Grid.Row="2"   Content="{Binding Model}"  Margin="0,0,0,10"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Тип устройства "/>
+            <Label Grid.Column="1" Grid.Row="2" Name="Type" Margin="0,0,0,10"/>
 
-            <Label Grid.Column="0" Grid.Row="3" Content="Проблема "/>
-            <TextBox Grid.Column="1" Grid.Row="3" Name="Pronlem" Margin="0,0,0,10"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Модель устройства "/>
+            <Label Grid.Column="1" Grid.Row="3" Name="Model"   Margin="0,0,0,10"/>
 
-            <Button Grid.Column="1" Grid.Row="4" Content="Изменить"  HorizontalAlignment="Left" Click="Button_Click" Margin="100 10 0 0"/>
-            <Button Grid.Column="1" Grid.Row="5" Content="Отмена"  HorizontalAlignment="Left" Click="Button_Click_1" Margin="100 10 0 0"/>
+            <Label Grid.Column="0" Grid.Row="4" Content="Проблема "/>
+            <TextBox Grid.Column="1" Grid.Row="4" Name="Problem" Margin="0,0,0,10"/>
+
+            <Button Grid.Column="1" Grid.Row="5" Content="Изменить"  HorizontalAlignment="Left" Click="Button_Click" Margin="100 10 0 0"/>
+            <Button Grid.Column="1" Grid.Row="6" Content="Отмена"  HorizontalAlignment="Left" Click="Button_Click_1" Margin="100 10 0 0"/>
 
         </Grid>
 

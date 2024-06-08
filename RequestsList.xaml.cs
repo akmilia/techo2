@@ -55,16 +55,14 @@ namespace techo
             {
                 using (techoEntities db = new techoEntities())
                 {
-                    MessageBox.Show("1");
-                    MessageBox.Show(currentID.ToString() + "here " );
+                   
                     
                     var requests = db.Requests.Where(r => r.ReqClient.Any(rc => rc.ClientID == currentID)).ToList();
                    
 
-                    MessageBox.Show(requests.ToString());
+                   
                     StringBuilder messageBuilder = new StringBuilder();
 
-                    MessageBox.Show("2");
                     foreach (var request in requests)
                     {
                         string HomeTechType = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechType1 : "";
@@ -105,13 +103,24 @@ namespace techo
         {
             AddRequest addRequest = new AddRequest();
             addRequest.Show();
-            LoadRequests();
+            
         }
         public void EditRequestButton_Click(object sender, RoutedEventArgs e)
         {
-            EditRequest addRequest = new EditRequest();
+            EditRequest addRequest = new EditRequest(currentID);
             addRequest.Show();
-            this.Close();
         }
+
+        //private void RepairRequestsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    //MessageBox.Show("fvkgdfn");
+        //    //if (RepairRequestsListBox.SelectedItem.   is Requests selectedRequest)
+        //    //{
+        //    //    EditRequest editRequestWindow = new EditRequest(selectedRequest);
+        //    //    editRequestWindow.Show();
+        //    //}
+        //    //else MessageBox.Show("mistake");
+
+        //}
     }
 }

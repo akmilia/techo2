@@ -24,38 +24,55 @@ namespace techo
             InitializeComponent();
             LoadRequests();
         }
-        private void LoadRequests()
+        public void LoadRequests()
         {
             try
             {
                 using (techoEntities db = new techoEntities())
                 {
-                    var requests = db.Requests
-                      .Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
-                      {
-                          RequestID = r.RequestID,
-                          TypeName = t.homeTechType1,
-                          ModelName = t.homeTechModel,
-                          StartDate = r.StartDate,
-                          ProblemDescription = r.ProblemDescription,
-                          RepairParts = r.RepairParts,
-                          //StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
-                          //
-                      })
-                        .ToList();
+                  
+
+                    var requests = db.Requests.ToList();
+
+                    StringBuilder messageBuilder = new StringBuilder();
+
+                    foreach (var request in requests)
+                    {
+                        string HomeTechType = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechType1 : "";
+                        string homeTechModel = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechModel : "";
+                        string statusDescription = request.Statuses.Any() ? request.Statuses.First().StatusDescription : ""; 
+
+                        messageBuilder.AppendLine($"Request currentID: {request.RequestID}");
+                        messageBuilder.AppendLine($"Start Date: {request.StartDate}");
+                        messageBuilder.AppendLine($"Home Tech Type: {HomeTechType}");
+                        messageBuilder.AppendLine($"Home Tech Model: {homeTechModel}");
+                        messageBuilder.AppendLine($"Problem Description: {request.ProblemDescription}");
+                        messageBuilder.AppendLine($"Repair Parts: {request.RepairParts}");
+                        messageBuilder.AppendLine($"Status Description: {statusDescription}");
+                        messageBuilder.AppendLine(); // Add a line break between requests
+
+                        // Add formatted data to the ListBox
+                        RepairRequestsListBox.Items.Add(
+                            $"Request currentID: {request.RequestID}\n" +
+                            $"Start Date: {request.StartDate}\n" +
+                            $"Home Tech Type: {HomeTechType}\n" +
+                            $"Home Tech Model: {homeTechModel}\n" +
+                            $"Problem Description: {request.ProblemDescription}\n" +
+                            $"Repair Parts: {request.RepairParts}\n" +
+                         $"Status Description: {statusDescription}\n\n"
+                        );
 
 
-
-                    RepairRequestsDataGrid.ItemsSource = requests;
+                    }
                 }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Возникла ошибка: {ex.Message}");
+                MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             EditRequestAdmin addRequest = new EditRequestAdmin();
             addRequest.Show();

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="techo.AddRequest"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Добавить заявку" Height="450" Width="800"> 
+        Height="450" Width="800" WindowStartupLocation="CenterScreen"> 
     <StackPanel Margin="40" >
         <TextBlock Text="Тип техники:" VerticalAlignment="Center"/>
         <ComboBox Name="homeTechType1" DisplayMemberPath="homeTechType1" SelectedValuePath="HomeTechID" Margin="5"/> 
