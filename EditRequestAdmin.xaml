@@ -32,9 +32,9 @@
             <Label Grid.Column="0" Grid.Row="2" x:Name="st" Content="Статус"/>
             <ComboBox Grid.Column="1" Grid.Row="2" x:Name="statusesComboBox" DisplayMemberPath="StatusDescription" SelectedValuePath="StatusDescription"/>
 
-        <Label Grid.Column="0" Grid.Row="3" x:Name="master" Content="Мастер"/>
-        <ComboBox Grid.Column="1" Grid.Row="3" x:Name="mastersComboBox" DisplayMemberPath="FIO" SelectedValuePath="FIO" />
-
+            <Label Grid.Column="0" Grid.Row="3" x:Name="master" Content="Мастер"/>
+             <ComboBox Grid.Column="1" Grid.Row="3" x:Name="mastersComboBox" DisplayMemberPath="UserID" SelectedValuePath="UserID" />
+ 
             <Button Grid.Column="1" Grid.Row="4" Content="Изменить" Click="Button_Click" HorizontalAlignment="Left"  Margin="100 10 0 0"/>
             <Button Grid.Column="1" Grid.Row="5" Content="Отмена" Click="Button_Click_1" HorizontalAlignment
                     ="Left"  Margin="100 10 0 0"/>

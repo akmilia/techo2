@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
@@ -47,7 +48,7 @@ namespace techo
 
                 var masters = db.Users
                        .Where(r => r.TypeID == 2)
-                       .Select(r => new { r.FIO })
+                       .Select(r => new { r.UserID  })
                        .ToList();
 
                 mastersComboBox.ItemsSource = masters;
@@ -61,16 +62,13 @@ namespace techo
             {
                 using (techoEntities db = new techoEntities())
                 {
-                    var fioOfMaster = currentReq.ReqClient
-                    .Join(db.Users, rc => rc.MasterID, u => u.UserID, (rc, u) => new { ReqClient = rc, User = u })
-                    .Where(x => x.User.TypeID == 2)
-                    .Select(x => x.User.UserID);
+                    var userIdOfMaster = currentReq.ReqClient.Select(t => t.MasterID);
 
-                    string status = currentReq.Statuses.Any() ? currentReq.Statuses.First().StatusDescription : "";
+                    string status = currentReq.Statuses.Any() ? currentReq.Statuses.First().StatusDescription : "No status available";
 
-                    //если тут что-то и прописывать, то только через += к label и связки
-                    statusesComboBox.Text = status; 
-                    mastersComboBox.Text = fioOfMaster.ToString();
+                    // If necessary, you can append to the label and handle bindings here
+                    mastersComboBox.Text = userIdOfMaster.ToString();
+                    statusesComboBox.Text = status;
 
                 }
             }
@@ -84,27 +82,46 @@ namespace techo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                    using (techoEntities db = new techoEntities())
-                    {    
+           
+                    try
+                    {
+                        using (techoEntities db = new techoEntities())
+                        {
+                            string status = statusesComboBox.SelectedItem.ToString();
+                            MessageBox.Show("2 var status" + status);
+                            var masterID = mastersComboBox.SelectedItem;
+                            
+                            if (masterID != null)
+                            {
+                                int statusID = db.Statuses
+                                    .Where(x => x.StatusDescription == status)
+                                    .Select(x => x.StatusID)
+                                    .FirstOrDefault();
+                                currentReq.StatusID = statusID;
+                                MessageBox.Show("4");
 
-                        string status = statusesComboBox.Text;
-                        string masterID = mastersComboBox.Text;  
-
-                        //currentReq.
-                        //db.Requests.AddOrUpdate(currentReq);
-                        //db.SaveChanges();
-
-                        this.Close();
+                                var reqClient = db.ReqClient.FirstOrDefault(rc => rc.RequestID == currentReq.RequestID);
+                                if (reqClient != null)
+                                {
+                                    MessageBox.Show("5");
+                                    reqClient.MasterID = Convert.ToInt32(masterID);
+                                    MessageBox.Show("6");
+                                    db.Requests.AddOrUpdate(currentReq);
+                                    MessageBox.Show("7");
+                                    db.ReqClient.AddOrUpdate(reqClient);
+                                    MessageBox.Show("8");
+                                    db.SaveChanges();
+                                    this.Close();
+                                    MessageBox.Show("Request updated successfully.");
+                                }
+                            }
+                        }
                     }
-             
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
