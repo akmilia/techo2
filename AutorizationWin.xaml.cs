@@ -35,10 +35,13 @@ namespace techo
                     if (user != null)
                     {
                         MessageBox.Show("Успешно вошли в систему");
+                        int id = user.UserID;
 
-                        
+
+
                         var userType = user.Users.TypeID;
                         Window windowToOpen;
+                        MessageBox.Show(user.UserID.ToString()); 
 
                         switch (userType)
                         {
@@ -52,7 +55,8 @@ namespace techo
                                 windowToOpen = new RequestListAdmin();
                                 break;
                             case 4: // Заказчик
-                                windowToOpen = new RequestsList(user.UserID);
+                                MessageBox.Show(id.ToString());
+                                windowToOpen = new RequestsList(id);
                                 break;
                             default:
                                 throw new InvalidOperationException("Неизвестная роль пользователя");

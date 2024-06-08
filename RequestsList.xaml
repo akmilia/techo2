@@ -39,8 +39,19 @@
                 <Button HorizontalAlignment="Left" Click="EditRequestButton_Click" Content="Редактировать заявку"></Button>
             </StackPanel>
             <Label>Ваши заявки:</Label>
-            <ListBox x:Name="RepairRequestsListBox" VerticalAlignment="Top" Height="300"/>
+            <!--<ListBox x:Name="RepairRequestsListBox" VerticalAlignment="Top" Height="300"/>-->
+        <DataGrid VerticalAlignment="Top" x:Name="RepairRequestsDataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер заявки" Foreground="Black" Binding="{Binding RequestID}"/>
+                <DataGridTextColumn Header="Дата добавления" Binding="{Binding StartDate}"/>
+                <DataGridTextColumn Header="Тип устройства" Binding="{Binding TypeName}" />
+                <DataGridTextColumn Header="Модель устройства" Binding="{Binding ModelName}"/>
 
+                <DataGridTextColumn Header="Описание проблемы" Binding="{Binding ProblemDescription}"/>
+                <DataGridTextColumn Header="Комплектующие части" Binding="{Binding RepairParts}"/>
+                <DataGridTextColumn Header="Статус заявки" Binding="{Binding StatusName}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
-        </StackPanel>
+    </StackPanel>
     </Window>
