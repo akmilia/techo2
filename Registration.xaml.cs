@@ -32,42 +32,89 @@ namespace techo
             try
             {
                 
-                using (techoEntities db = new techoEntities())
+                using (techoEntities db = new techoEntities()) 
                 {
-                    if (string.IsNullOrWhiteSpace(PasswordTextBox.Password) ||
-                        string.IsNullOrWhiteSpace(LoginTextBox.Text) ||
-                        string.IsNullOrWhiteSpace(SecondName.Text) ||
-                        string.IsNullOrWhiteSpace(PhoneNumberTextBox.Text))
+                    if (string.IsNullOrWhiteSpace(SecondName.Text))
                     {
-                        MessageBox.Show("Все поля обязательны для ввода и пробелы запрещены.");
+                        MessageBox.Show("Пожалуйста, введите Фамилию. Поле " +
+                                         "не должно содержать пробелы");
+                        SecondName.Text = String.Empty;
+                        return;
+                    } 
+
+                    if (string.IsNullOrWhiteSpace(FirstName.Text))
+                    {
+                        MessageBox.Show("Пожалуйста, введите Имя. Поле " +
+                                         "не должно содержать пробелы");
+                        FirstName.Text = String.Empty;
+                        return;
+                    }
+                    if (string.IsNullOrWhiteSpace(ThirdName.Text))
+                    {
+                        MessageBox.Show("Пожалуйста, введите Отчество. Поле " +
+                                         "не должно содержать пробелы"); 
+                        ThirdName.Text = String.Empty;
+                        return;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(LoginTextBox.Text))
+                    {
+                        MessageBox.Show("Пожалуйста, введите Логин. Поле " +
+                                        "не должно содержать пробелы");
+                        LoginTextBox.Text = String.Empty;
+                        return;
+                    }
+
+
+
+                    if (string.IsNullOrWhiteSpace(PasswordTextBox.Password))
+                    {
+                        MessageBox.Show("Пожалуйста, введите пароль. Поле " +
+                                         "не должно содержать пробелы");
+                            PasswordTextBox.Password = String.Empty;
+                        return;
+                    }
+
+                 
+
+                    if (string.IsNullOrWhiteSpace(PhoneNumberTextBox.Text))
+                    {
+                        MessageBox.Show("Пожалуйста, введите номер. Поле " +
+                                        "не должно содержать пробелы");
+                        PhoneNumberTextBox.Text = String.Empty;
                         return;
                     }
 
                     if (!Regex.IsMatch(SecondName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
                     {
-                        MessageBox.Show("Пожалуйста, введите фамилию правильно!", "Дата сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Пожалуйста, введите фамилию правильно! Только буквы, до 20", "Дата сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
                         SecondName.Text = "";
                         return;
                     }
 
                     if (!Regex.IsMatch(FirstName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
                     {
-                        MessageBox.Show("Пожалуйста, введите имя правильно!", "Дата сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Пожалуйста, введите имя правильно! Только буквы, до 20, ", "Дата сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
                         FirstName.Text = "";
                         return;
                     }
 
                     if (!Regex.IsMatch(ThirdName.Text, "^[А-Яа-яA-Za-z]{2,20}$"))
                     {
-                        MessageBox.Show("Пожалуйста, введите отчество правильно!", "Дата сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Пожалуйста, введите отчество правильно! Только буквы, до 20", "Дата сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
                         ThirdName.Text = "";
                         return;
                     }
 
-                    // нужна проверка уникальности логина if not exist 
                     if (db.Autorization.Any(a => a.Login == LoginTextBox.Text))
                     {
                         MessageBox.Show("Пользователь с таким логином уже существует.");
+                        LoginTextBox.Text = "";
+                        return;
+                    }
+                    if (LoginTextBox.Text.Length > 20)
+                    {
+                        MessageBox.Show("Логин должен быть до 20 символов");
                         LoginTextBox.Text = "";
                         return;
                     }
@@ -118,9 +165,8 @@ namespace techo
                             Password = PasswordTextBox.Password.Trim()
                         }
                     };
-                    //db.Autorization.Add(newUser.Autorization);
+
                     db.Users.Add(newUser);
-                    //newUser.Autorization = null;
                     db.SaveChanges();
 
                     AutorizationWin autorization = new AutorizationWin();
@@ -174,27 +220,27 @@ namespace techo
 
             if (!hasDigit)
             {
-                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать цифры");
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должно содержать цифры");
                 return false;
             }
             else if (!hasLower)
             {
-                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать строчные буквы");
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должно содержать строчные буквы");
                 return false;
             }
             else if (!hasUpper)
             {
-                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать заглавные буквы");
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должно содержать заглавные буквы");
                 return false;
             }
             else if (!hasSpecialChar)
             {
-                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать специальные символы");
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должно содержать специальные символы");
                 return false;
             }
             else if (kol < 8 || kol > 20)
             {
-                MessageBox.Show("Пароль не соответствует требованиям, пароль должен содержать от 8 до 20 символов");
+                MessageBox.Show("Пароль не соответствует требованиям, пароль должно содержать от 8 до 20 символов");
                 return false;
             }
 

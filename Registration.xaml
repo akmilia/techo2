@@ -6,7 +6,7 @@
         <Label Content="Регистрация" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Padding="20"/>
         <UniformGrid Columns="2">
             <TextBlock>Фамилия</TextBlock>
-            <TextBox x:Name="SecondName"/>
+            <TextBox x:Name="SecondName" />
             <TextBlock>Имя</TextBlock>
             <TextBox x:Name="FirstName"/>
             <TextBlock>Отчество</TextBlock>

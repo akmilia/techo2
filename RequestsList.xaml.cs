@@ -19,75 +19,116 @@ using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity;
 
 namespace techo
 {
-    /// <summary>
-    /// Логика взаимодействия для Requests.xaml
-    /// </summary>
     public partial class RequestsList : Window
     {   
-        private int ID;
+        int currentID;
         
-        public RequestsList(int id)
+        public RequestsList(int currentID)
         {
             InitializeComponent();
             LoadRequests(); 
 
 
-            ID = id;
-            //RepairRequestsDataGrid.Columns.Add("RequestID"); 
+            this.currentID = currentID;
         }
 
+
+        //var requests = db.Requests.Where(r => r.ReqClient.Any(rc => rc.ClientID == currentID))
+        //.Join(db.Statuses, r => r.StatusID, st => st.StatusID, (r, st) => new { r, st })
+        //.Join(db.HomeTechType, rt => rt.r.HomeTechID, t => t.HomeTechID, (rt, t) => new
+        //{
+        //    RequestID = rt.r.RequestID,
+        //    TypeName = t.homeTechType1,
+        //    ModelName = t.homeTechModel,
+        //    StartDate = rt.r.StartDate,
+        //    ProblemDescription = rt.r.ProblemDescription,
+        //    RepairParts = rt.r.RepairParts,
+        //    //StatusName = rt.st.StatusDescription, // Use rt.st instead of st
+        //}).ToList();
         public void LoadRequests()
         {
             try
             {
+                //using (techoEntities db = new techoEntities())
+                //{
+                //    var requests = db.Requests
+                //        .Where(r => r.ReqClient.Any(rc => rc.ClientID == this.currentID))
+                //        .ToList();
+
+                //    StringBuilder messageBuilder = new StringBuilder();
+                //    foreach (var request in requests)
+                //    {
+                //        string HomeTechType = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechType1 : "";
+                //        string homeTechModel = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechModel : "";
+                //        //string statusDescription = request.Statuses.Any() ? request.Statuses.First().StatusDescription : "";
+
+                //        messageBuilder.AppendLine($"Request currentID: {request.RequestID}");
+                //        messageBuilder.AppendLine($"Start Date: {request.StartDate}");
+                //        messageBuilder.AppendLine($"Home Tech Type: {HomeTechType}");
+                //        messageBuilder.AppendLine($"Home Tech Model: {homeTechModel}");
+                //        messageBuilder.AppendLine($"Problem Description: {request.ProblemDescription}");
+                //        messageBuilder.AppendLine($"Repair Parts: {request.RepairParts}");
+                //        //messageBuilder.AppendLine($"Status Description: {statusDescription}");
+                //        messageBuilder.AppendLine(); // Add a line break between requests
+
+                //        // Add formatted data to the ListBox
+                //        RepairRequestsListBox.Items.Add(
+                //            $"Request currentID: {request.RequestID}\n" +
+                //            $"Start Date: {request.StartDate}\n" +
+                //            $"Home Tech Type: {HomeTechType}\n" +
+                //            $"Home Tech Model: {homeTechModel}\n" +
+                //            $"Problem Description: {request.ProblemDescription}\n" +
+                //            $"Repair Parts: {request.RepairParts}\n"
+                //        // $"Status Description: {statusDescription}\n\n"
+                //        );
+                //    }
+                //   }
+
                 using (techoEntities db = new techoEntities())
                 {
-                    //var requests = db.Requests
-                    // .Join(db.ReqClient, r => r.RequestID, rc => rc.RequestID, (r, rc) => r) 
-                    // .Where(rc.RequestID != 0)
-                    // .Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
-                    // {
-                    //     RequestID = r.RequestID,
-                    //     TypeName = t.homeTechType1,
-                    //     ModelName = t.homeTechModel,
-                    //     StartDate = r.StartDate,
-                    //     ProblemDescription = r.ProblemDescription,
-                    //     RepairParts = r.RepairParts,
-                    //     StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
+                    var requests = db.Requests
+                        .Where(r => r.ReqClient.Any(rc => rc.ClientID == this.currentID))
+                        .Join(db.Statuses, r => r.StatusID, st => st.StatusID, (r, st) => new { r, st })
+                        .Join(db.HomeTechType, rt => rt.r.HomeTechID, t => t.HomeTechID, (rt, t) => new
+                        {
+                            RequestID = rt.r.RequestID,
+                            TypeName = t.homeTechType1,
+                            ModelName = t.homeTechModel,
+                            StartDate = rt.r.StartDate,
+                            ProblemDescription = rt.r.ProblemDescription,
+                            RepairParts = rt.r.RepairParts,
+                            StatusName = rt.st.StatusDescription,
+                        })
+                        .ToList();
 
-                    // }); 
+                    StringBuilder messageBuilder = new StringBuilder();
+                    foreach (var request in requests)
+                    {
+                        string homeTechType = request.TypeName;
+                        string homeTechModel = request.ModelName;
+                        string statusDescription = request.StatusName;
 
-                    var requests = db.Requests.Where(r=> r.ReqClient.Any(rc=>rc.ClientID == 7)).ToList();
-      
-
-
-                    //  var requests = db.Requests
-                    //.Join(db.HomeTechType, r => r.HomeTechID, t => t.HomeTechID, (r, t) => new
-                    //{
-                    //    RequestID = r.RequestID,
-                    //    TypeName = t.homeTechType1,
-                    //    ModelName = t.homeTechModel,
-                    //    StartDate = r.StartDate,
-                    //    ProblemDescription = r.ProblemDescription,
-                    //    RepairParts = r.RepairParts,
-                    //    //StatusName = r.StatusID == null ? null : db.Statuses.Find(r.StatusID).StatusDescription,
-                    //})
-                    ////.Where(r => r.RequestID == ID)
-                    //.ToList();
-
-                    RepairRequestsDataGrid.ItemsSource = requests;
+                        messageBuilder.AppendLine($"Request currentID: {request.RequestID}");
+                        messageBuilder.AppendLine($"Start Date: {request.StartDate}");
+                        messageBuilder.AppendLine($"Home Tech Type: {homeTechType}");
+                        messageBuilder.AppendLine($"Home Tech Model: {homeTechModel}");
+                        messageBuilder.AppendLine($"Problem Description: {request.ProblemDescription}");
+                        messageBuilder.AppendLine($"Repair Parts: {request.RepairParts}");
+                        messageBuilder.AppendLine($"Status Description: {statusDescription}");
+                        messageBuilder.AppendLine(); // Add a line break between requests
+                    }
+                    RepairRequestsListBox.Items.Add(messageBuilder.ToString());
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Возникла ошибка: {ex.Message}");
+                MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
-
-    
         public void AddRequestButton_Click(object sender, RoutedEventArgs e)
         {
             AddRequest addRequest = new AddRequest();

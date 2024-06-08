@@ -27,7 +27,7 @@
             <PropertyRef Name="HomeTechID" />
           </Key>
           <Property Name="HomeTechID" Type="int" Nullable="false" />
-          <Property Name="homeTechType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HomeTechType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="homeTechModel" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Reg_Status">
@@ -559,7 +559,7 @@
             <EntityTypeMapping TypeName="techoModel.HomeTechType">
               <MappingFragment StoreEntitySet="HomeTechType">
                 <ScalarProperty Name="HomeTechID" ColumnName="HomeTechID" />
-                <ScalarProperty Name="homeTechType1" ColumnName="homeTechType" />
+                <ScalarProperty Name="homeTechType1" ColumnName="HomeTechType" />
                 <ScalarProperty Name="homeTechModel" ColumnName="homeTechModel" />
               </MappingFragment>
             </EntityTypeMapping>

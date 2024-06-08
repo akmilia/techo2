@@ -5,12 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace techo
 {
@@ -19,10 +14,6 @@ namespace techo
         public AutorizationWin()
         {
             InitializeComponent();
-            //RegistrationButton = new Button();
-            //AuthorizeButton = new Button();
-            //PasswordBox = new PasswordBox();
-            //LoginTextBox = new TextBox();
         }
 
         public void RegistrationButton_Click(object sender, RoutedEventArgs e)
