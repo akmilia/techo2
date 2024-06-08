@@ -8,36 +8,36 @@
         Height="450" Width="800" 
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
+       <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.2*"/>
                 <ColumnDefinition Width="0.8*"/>
                 <ColumnDefinition Width="0.2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
 
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="1" Content="Мастер "/>
-            <ComboBox Grid.Column="1" Grid.Row="1"></ComboBox>
+            <Label Grid.Column="0" Grid.Row="0" Content="Выберите заявку"/>
+            <ComboBox Grid.Column="1" Grid.Row="0" x:Name="requestsComboBox" Foreground="Black" DisplayMemberPath="RequestID" SelectedValuePath="RequestID"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="Выбрать" Click="Button_Click_2"/>
 
-            <Label Grid.Column="0" Grid.Row="2" Content="Статус"/>
-            <ComboBox Grid.Column="1" Grid.Row="2"> </ComboBox>
 
-            <Label Grid.Column="0" Grid.Row="3" Content="Дата окончания "/>
-            <DatePicker Grid.Column="1" Grid.Row="3" Name="Pronlem" Margin="0,0,0,10"/>
+            <Label Grid.Column="0" Grid.Row="2" x:Name="st" Content="Статус"/>
+            <ComboBox Grid.Column="1" Grid.Row="2" x:Name="statusesComboBox" DisplayMemberPath="StatusDescription" SelectedValuePath="StatusDescription"/>
+
+        <Label Grid.Column="0" Grid.Row="3" x:Name="master" Content="Мастер"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" x:Name="mastersComboBox" DisplayMemberPath="FIO" SelectedValuePath="FIO" />
 
             <Button Grid.Column="1" Grid.Row="4" Content="Изменить" Click="Button_Click" HorizontalAlignment="Left"  Margin="100 10 0 0"/>
             <Button Grid.Column="1" Grid.Row="5" Content="Отмена" Click="Button_Click_1" HorizontalAlignment
                     ="Left"  Margin="100 10 0 0"/>
-
-        </Grid>
 
     </Grid>
 </Window>

@@ -76,7 +76,6 @@ namespace techo
         {
             EditRequestAdmin addRequest = new EditRequestAdmin();
             addRequest.Show();
-            this.Close();
         }
     }
 }
