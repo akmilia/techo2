@@ -41,7 +41,7 @@ namespace techo
 
                         var userType = user.Users.TypeID;
                         Window windowToOpen;
-                        MessageBox.Show(user.UserID.ToString()); 
+                        //MessageBox.Show(user.UserID.ToString()); 
 
                         switch (userType)
                         {
@@ -55,7 +55,7 @@ namespace techo
                                 windowToOpen = new RequestListAdmin();
                                 break;
                             case 4: // Заказчик
-                                MessageBox.Show(id.ToString());
+                               // MessageBox.Show(id.ToString());
                                 windowToOpen = new RequestsList(id);
                                 break;
                             default:

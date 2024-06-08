@@ -29,11 +29,11 @@ namespace techo
         
         public RequestsList(int id)
         {
-            InitializeComponent();
-            LoadRequests(); 
+            InitializeComponent(); 
 
-             currentID = id;
-            MessageBox.Show(currentID.ToString());
+
+            currentID = id;
+            LoadRequests(); 
         }
 
 
@@ -56,87 +56,45 @@ namespace techo
                 using (techoEntities db = new techoEntities())
                 {
                     MessageBox.Show("1");
-                    //MessageBox.Show(currentID.ToString());
-                    //var requests = db.Requests
-                    //    .Where(r => r.ReqClient.Any(rc => rc.ClientID == this.currentID))
-                    //    .ToList(); 
-                    var requests = db.Requests.Where(r => r.ReqClient.Any(rc => rc.ClientID == 7)).ToList();
-                    RepairRequestsDataGrid.ItemsSource = requests; 
+                    MessageBox.Show(currentID.ToString() + "here " );
+                    
+                    var requests = db.Requests.Where(r => r.ReqClient.Any(rc => rc.ClientID == currentID)).ToList();
+                   
 
-                    //MessageBox.Show(requests.ToString());
-                    //StringBuilder messageBuilder = new StringBuilder();
+                    MessageBox.Show(requests.ToString());
+                    StringBuilder messageBuilder = new StringBuilder();
 
-                    //MessageBox.Show("2");
-                    //foreach (var request in requests)
-                    //{
-                    //    MessageBox.Show("3");
-                    //    string HomeTechType = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechType1 : "";
-                    //    string homeTechModel = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechModel : "";
-                    //    string statusDescription = request.Statuses.Any() ? request.Statuses.First().StatusDescription : "";
+                    MessageBox.Show("2");
+                    foreach (var request in requests)
+                    {
+                        string HomeTechType = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechType1 : "";
+                        string homeTechModel = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechModel : "";
+                        string statusDescription = request.Statuses.Any() ? request.Statuses.First().StatusDescription : "";
 
-                    //    MessageBox.Show(HomeTechType + homeTechModel + statusDescription);
+                        messageBuilder.AppendLine($"Request currentID: {request.RequestID}");
+                        messageBuilder.AppendLine($"Start Date: {request.StartDate}");
+                        messageBuilder.AppendLine($"Home Tech Type: {HomeTechType}");
+                        messageBuilder.AppendLine($"Home Tech Model: {homeTechModel}");
+                        messageBuilder.AppendLine($"Problem Description: {request.ProblemDescription}");
+                        messageBuilder.AppendLine($"Repair Parts: {request.RepairParts}");
+                        messageBuilder.AppendLine($"Status Description: {statusDescription}");
+                        messageBuilder.AppendLine(); // Add a line break between requests
 
-                    //    messageBuilder.AppendLine($"Request currentID: {request.RequestID}");
-                    //    messageBuilder.AppendLine($"Start Date: {request.StartDate}");
-                    //    messageBuilder.AppendLine($"Home Tech Type: {HomeTechType}");
-                    //    messageBuilder.AppendLine($"Home Tech Model: {homeTechModel}");
-                    //    messageBuilder.AppendLine($"Problem Description: {request.ProblemDescription}");
-                    //    messageBuilder.AppendLine($"Repair Parts: {request.RepairParts}");
-                    //    messageBuilder.AppendLine($"Status Description: {statusDescription}");
-                    //    messageBuilder.AppendLine(); // Add a line break between requests
+                        // Add formatted data to the ListBox
+                        RepairRequestsListBox.Items.Add(
+                            $"Request currentID: {request.RequestID}\n" +
+                            $"Start Date: {request.StartDate}\n" +
+                            $"Home Tech Type: {HomeTechType}\n" +
+                            $"Home Tech Model: {homeTechModel}\n" +
+                            $"Problem Description: {request.ProblemDescription}\n" +
+                            $"Repair Parts: {request.RepairParts}\n" +
+                         $"Status Description: {statusDescription}\n\n"
+                        );
 
-                    //    MessageBox.Show("4");
 
-                    //    RepairRequestsListBox.Items.Add(
-                    //        $"Request currentID: {request.RequestID}\n" +
-                    //        $"Start Date: {request.StartDate}\n" +
-                    //        $"Home Tech Type: {HomeTechType}\n" +
-                    //        $"Home Tech Model: {homeTechModel}\n" +
-                    //        $"Problem Description: {request.ProblemDescription}\n" +
-                    //        $"Repair Parts: {request.RepairParts}\n" +
-                    //        $"Status Description: {statusDescription}\n\n"
-                    //    );
-                    //    MessageBox.Show("5");
-
-                    //    MessageBox.Show( messageBuilder.ToString() );
-                   // }
-                   //}
-
-                //using (techoEntities db = new techoEntities())
-                //{
-                //    var requests = db.Requests
-                //        .Where(r => r.ReqClient.Any(rc => rc.ClientID == this.currentID))
-                //        .Join(db.Statuses, r => r.StatusID, st => st.StatusID, (r, st) => new { r, st })
-                //        .Join(db.HomeTechType, rt => rt.r.HomeTechID, t => t.HomeTechID, (rt, t) => new
-                //        {
-                //            RequestID = rt.r.RequestID,
-                //            TypeName = t.homeTechType1,
-                //            ModelName = t.homeTechModel,
-                //            StartDate = rt.r.StartDate,
-                //            ProblemDescription = rt.r.ProblemDescription,
-                //            RepairParts = rt.r.RepairParts,
-                //            StatusName = rt.st.StatusDescription,
-                //        })
-                //        .ToList();
-
-                //    StringBuilder messageBuilder = new StringBuilder();
-                //    foreach (var request in requests)
-                //    {
-                //        string homeTechType = request.TypeName;
-                //        string homeTechModel = request.ModelName;
-                //        string statusDescription = request.StatusName;
-
-                //        messageBuilder.AppendLine($"Request currentID: {request.RequestID}");
-                //        messageBuilder.AppendLine($"Start Date: {request.StartDate}");
-                //        messageBuilder.AppendLine($"Home Tech Type: {homeTechType}");
-                //        messageBuilder.AppendLine($"Home Tech Model: {homeTechModel}");
-                //        messageBuilder.AppendLine($"Problem Description: {request.ProblemDescription}");
-                //        messageBuilder.AppendLine($"Repair Parts: {request.RepairParts}");
-                //        messageBuilder.AppendLine($"Status Description: {statusDescription}");
-                //        messageBuilder.AppendLine(); // Add a line break between requests
-                //    }
-                //    RepairRequestsDataGrid.Items.Add(messageBuilder.ToString());
+                    }
                 }
+
             }
             catch (Exception ex)
             {
