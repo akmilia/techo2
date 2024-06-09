@@ -42,7 +42,11 @@ namespace techo
                         LoginTextBox.Text = "";
                         return;
                     }
-
+                    if (string.IsNullOrEmpty(TypeComboBox.Text))
+                    {
+                        MessageBox.Show("Пожалуйста, выберите роль пользователя.");
+                        return;
+                    }
                     int typeId = GetTypeId(TypeComboBox.Text);
 
                     int maxUserId = db.Users.Max(u => u.UserID);
