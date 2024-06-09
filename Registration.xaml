@@ -6,19 +6,19 @@
         <Label Content="Регистрация" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Padding="20"/>
         <UniformGrid Columns="2">
             <TextBlock>Фамилия</TextBlock>
-            <TextBox x:Name="SecondName" />
+            <TextBox x:FieldModifier="public" x:Name="SecondName" />
             <TextBlock>Имя</TextBlock>
-            <TextBox x:Name="FirstName"/>
+            <TextBox x:FieldModifier="public" x:Name="FirstName"/>
             <TextBlock>Отчество</TextBlock>
-            <TextBox x:Name="ThirdName"/>
+            <TextBox x:FieldModifier="public" x:Name="ThirdName"/>
             <TextBlock>Номер телефона</TextBlock>
-            <TextBox x:Name="PhoneNumberTextBox"/>
+            <TextBox x:FieldModifier="public" x:Name="PhoneNumberTextBox"/>
             <TextBlock>Логин</TextBlock>
-            <TextBox x:Name="LoginTextBox"/>
+            <TextBox x:FieldModifier="public" x:Name="LoginTextBox"/>
             <TextBlock>Пароль</TextBlock>
-            <PasswordBox x:Name="PasswordTextBox"/>
+            <PasswordBox x:FieldModifier="public" x:Name="PasswordTextBox"/>
             <TextBlock>Роль</TextBlock>
-            <ComboBox x:Name="TypeComboBox">
+            <ComboBox x:FieldModifier="public" x:Name="TypeComboBox">
                 <ComboBoxItem Content="Менеджер"/>
                 <ComboBoxItem Content="Мастер"/>
                 <ComboBoxItem Content="Оператор"/>

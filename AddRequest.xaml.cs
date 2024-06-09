@@ -22,7 +22,7 @@ namespace techo
         {
             using (techoEntities db = new techoEntities())
             {
-                // Загрузите все уникальные типы техники
+                //  все уникальные типы техники
                 homeTechTypes = db.HomeTechType
                                   .GroupBy(ht => ht.homeTechType1)
                                   .Select(g => g.FirstOrDefault())
@@ -35,7 +35,7 @@ namespace techo
         {
             using (techoEntities db = new techoEntities())
             {
-                // Проверьте, существует ли уже этот тип техники
+                
                 var existingType = db.HomeTechType.FirstOrDefault(ht => ht.homeTechType1 == techType);
                 if (existingType == null)
                 {
@@ -54,7 +54,7 @@ namespace techo
         {
             using (techoEntities db = new techoEntities())
             {
-                // Получите максимальный RequestID из существующих заявок
+               
                 int maxRequestID = db.Requests.Max(r => r.RequestID);
 
                 newRequest.RequestID = maxRequestID + 1;

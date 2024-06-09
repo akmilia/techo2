@@ -66,7 +66,6 @@ namespace techo
 
                     string status = currentReq.Statuses.Any() ? currentReq.Statuses.First().StatusDescription : "No status available";
 
-                    // If necessary, you can append to the label and handle bindings here
                     mastersComboBox.Text = userIdOfMaster.ToString();
                     statusesComboBox.Text = status;
 

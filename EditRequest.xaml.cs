@@ -56,8 +56,8 @@ namespace techo
                     string homeTechModel = currentReq.HomeTechType.Any() ? currentReq.HomeTechType.First().homeTechModel : "";
                     string problemDescription = currentReq.ProblemDescription;
 
-                    Type.Content = HomeTechType; 
-                    Model.Content = homeTechModel;
+                    //Type.Content = HomeTechType; 
+                    //Model.Content = homeTechModel;
                     Problem.Text = problemDescription;
 
                 }

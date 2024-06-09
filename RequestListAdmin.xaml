@@ -12,7 +12,7 @@
             <Button HorizontalAlignment="Left" Click="Button_Click_1" Content="Редактировать заявку"></Button>
         </StackPanel>
         <Label HorizontalAlignment="Left">Ваши заявки:</Label>
-        <ListBox x:Name="RepairRequestsListBox" VerticalAlignment="Top" Height="300"/>
+        <ListBox x:FieldModifier="public" x:Name="RepairRequestsListBox" VerticalAlignment="Top" Height="300"/>
 
     </StackPanel>
 </Window>

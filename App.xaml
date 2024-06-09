@@ -22,7 +22,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Foreground" Value="#e6002e"/>
-            <Setter Property="Background" Value="#fdbdba"/>
+            <Setter Property="Background" Value="AliceBlue"/>
             <Setter Property="Width" Value="300"/>
             <Setter Property="Height" Value="20"/>
         </Style>
@@ -68,7 +68,7 @@
                 <Setter Property="FontSize" Value="20"/>
                 <Setter Property="FontFamily" Value="Bookman Old Style"/>
                 <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="BorderBrush" Value="HotPink"/>
+            <Setter Property="BorderBrush" Value="AliceBlue"/>
                 <Setter Property="SelectionBrush" Value="#FFDEA663"/>
                 <Setter Property="Height" Value="32"/>
             </Style>
@@ -77,7 +77,7 @@
                 <Setter Property="FontSize" Value="20"/>
                 <Setter Property="FontFamily" Value="Bookman Old Style"/>
                 <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="BorderBrush" Value="HotPink"/>
+            <Setter Property="BorderBrush" Value="AliceBlue"/>
                 <Setter Property="SelectionBrush" Value="#FFDEA663"/>
                 <Setter Property="Height" Value="32"/>
             </Style>

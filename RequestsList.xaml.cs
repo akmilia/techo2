@@ -76,9 +76,8 @@ namespace techo
                         messageBuilder.AppendLine($"Problem Description: {request.ProblemDescription}");
                         messageBuilder.AppendLine($"Repair Parts: {request.RepairParts}");
                         messageBuilder.AppendLine($"Status Description: {statusDescription}");
-                        messageBuilder.AppendLine(); // Add a line break between requests
+                        messageBuilder.AppendLine(); 
 
-                        // Add formatted data to the ListBox
                         RepairRequestsListBox.Items.Add(
                             $"Request currentID: {request.RequestID}\n" +
                             $"Start Date: {request.StartDate}\n" +

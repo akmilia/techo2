@@ -20,10 +20,15 @@
         </Grid.RowDefinitions>
         <Label Grid.Column="1" Content="Вход" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="20"/>
         <Label Grid.Column="0" Grid.Row="1" Content="Логин"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Name="LoginTextBox" Margin="0,0,0,10"/>
+        <TextBox x:FieldModifier="public" Grid.Column="1" Grid.Row="1"
+                 Name="LoginTextBox" Margin="0,0,0,10"/>
         <Label Grid.Column="0" Grid.Row="2" Content="Пароль"/>
-        <PasswordBox Grid.Column="1" Grid.Row="2" Name="PasswordBox" Margin="0,0,0,10"/>
-        <Button Grid.Column="1" Grid.Row="3" Content="Войти" x:Name="AuthorizeButton" Click="AuthorizeButton_Click"/>
-        <Button Grid.Column="1" Grid.Row="5" Content="Еще не зарегистрированы?" x:Name="RegistrationButton" Click="RegistrationButton_Click" Background="AliceBlue" Margin="10"/>
+        <PasswordBox x:FieldModifier="public" Grid.Column="1" Grid.Row="2"
+                     Name="PasswordBox" Margin="0,0,0,10"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="Войти"
+                x:Name="AuthorizeButton" Click="AuthorizeButton_Click"/>
+        <Button Grid.Column="1" Grid.Row="5" Content="Еще не зарегистрированы?" 
+                x:Name="RegistrationButton"
+                Click="RegistrationButton_Click" Background="AliceBlue" Margin="10"/>
     </Grid>
 </Window>
