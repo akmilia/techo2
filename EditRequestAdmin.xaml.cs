@@ -61,7 +61,7 @@ namespace techo
             {
                 using (techoEntities db = new techoEntities())
                 {
-                    var userIdOfMaster = currentReq.ReqClient.Select(t => t.MasterID);
+                    var userIdOfMaster = currentReq.ReqClient.Any() ? currentReq.ReqClient.First().MasterID : 0;
                     string status = currentReq.Statuses.Any() ? currentReq.Statuses.First().StatusDescription : "No status available";
                     
                     MessageBox.Show("master id" + userIdOfMaster + "status" + status);  
@@ -87,12 +87,10 @@ namespace techo
                         using (techoEntities db = new techoEntities())
                         {
                             string status = statusesComboBox.SelectedItem.ToString();
-                            MessageBox.Show("2 var status" + status);
-                            var masterID = mastersComboBox.SelectedItem;
-                            MessageBox.Show("2 var masterID" + masterID);
+                            MessageBox.Show("2 var status  " + status);
+                            string masterID = mastersComboBox.SelectedItem.ToString();
+                            MessageBox.Show("2 var masterID  " + masterID);
 
-                            if (masterID != null)
-                            {
                                 int statusID = db.Statuses
                                     .Where(x => x.StatusDescription == status)
                                     .Select(x => x.StatusID)
@@ -114,7 +112,7 @@ namespace techo
                                     this.Close();
                                     MessageBox.Show("Request updated successfully.");
                                 }
-                            }
+                            
                         }
                     }
                     catch (Exception ex)

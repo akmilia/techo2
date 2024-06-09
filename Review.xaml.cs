@@ -14,9 +14,6 @@ using System.Windows.Media.Imaging;
 
 namespace techo
 {
-    /// <summary>
-    /// Логика взаимодействия для Review.xaml
-    /// </summary>
     public partial class Review : Window
     {
         public Review()

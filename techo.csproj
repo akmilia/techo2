@@ -87,7 +87,6 @@
     <Compile Include="EditRequestAdmin.xaml.cs">
       <DependentUpon>EditRequestAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extra.cs" />
     <Compile Include="HomeTechType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
