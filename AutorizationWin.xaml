@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:techo"
         mc:Ignorable="d"
-         Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Авторизация"
+         MaxHeight="450" MaxWidth="800" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -29,6 +30,6 @@
                 x:Name="AuthorizeButton" Click="AuthorizeButton_Click"/>
         <Button Grid.Column="1" Grid.Row="5" Content="Еще не зарегистрированы?" 
                 x:Name="RegistrationButton"
-                Click="RegistrationButton_Click" Background="AliceBlue" Margin="10"/>
+                Click="RegistrationButton_Click" Background="BlanchedAlmond" Margin="10"/>
     </Grid>
 </Window>

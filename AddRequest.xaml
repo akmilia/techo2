@@ -2,7 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Height="450" Width="800" WindowStartupLocation="CenterScreen"> 
-    <StackPanel Margin="40" >
+    <StackPanel  Height="400" Width="750" >
+
+        <Label Content="Добавление заявки" Margin="20" FontSize="30" FontWeight="Bold" VerticalAlignment="Center"/>
+
         <TextBlock Text="Тип техники:" VerticalAlignment="Center"/>
         <ComboBox Name="homeTechType1" DisplayMemberPath="homeTechType1" SelectedValuePath="HomeTechID" Margin="5"/> 
         

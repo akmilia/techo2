@@ -8,7 +8,7 @@
         Height="450" Width="800"
              WindowStartupLocation="CenterScreen">
     <StackPanel>
-        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top" Background="LightPink">
+        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top" Background="LightBlue">
             <Button HorizontalAlignment="Left" Click="Button_Click_1" Content="Редактировать заявку"></Button>
             <Button HorizontalAlignment="Left" Click="Button_Click_2" Content="Обновить"></Button>
         </StackPanel>

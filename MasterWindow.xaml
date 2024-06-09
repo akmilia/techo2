@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:techo"
         mc:Ignorable="d"
-        Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <StackPanel>
+        MaxHeight="450" MaxWidth="1200" WindowStartupLocation="CenterScreen">
+    <StackPanel Height="450" Width="800">
         <StackPanel Height="30" VerticalAlignment="Top" Background="AliceBlue">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" >
                 <Button x:Name="AddButton" Content="Добавить комментарий" Margin="5" Click="AddButton_Click" />

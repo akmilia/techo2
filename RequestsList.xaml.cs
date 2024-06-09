@@ -1,25 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Shapes;
-using System.Xml.Linq;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity;
+
 
 namespace techo
 {
@@ -36,19 +22,6 @@ namespace techo
             LoadRequests(); 
         }
 
-
-        //var requests = db.Requests.Where(r => r.ReqClient.Any(rc => rc.ClientID == currentID))
-        //.Join(db.Statuses, r => r.StatusID, st => st.StatusID, (r, st) => new { r, st })
-        //.Join(db.HomeTechType, rt => rt.r.HomeTechID, t => t.HomeTechID, (rt, t) => new
-        //{
-        //    RequestID = rt.r.RequestID,
-        //    TypeName = t.homeTechType1,
-        //    ModelName = t.homeTechModel,
-        //    StartDate = rt.r.StartDate,
-        //    ProblemDescription = rt.r.ProblemDescription,
-        //    RepairParts = rt.r.RepairParts,
-        //    //StatusName = rt.st.StatusDescription, // Use rt.st instead of st
-        //}).ToList();
         public void LoadRequests()
         {
             try

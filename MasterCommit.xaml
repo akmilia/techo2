@@ -32,8 +32,8 @@
             <Label Grid.Column="0" Grid.Row="2" Content="Комментарий "/>
             <TextBox Grid.Column="1" Grid.Row="2" Name="Comment" Margin="0,0,0,10"/>
 
-            <Button Grid.Column="1" Grid.Row="3" Content="Изменить"  HorizontalAlignment="Left" Click="Button_AddComment_Click" />
-            <Button Grid.Column="1" Grid.Row="4" Content="Отмена"  HorizontalAlignment="Left" Click="Button_Click_2" />
+            <Button Grid.Column="1" Grid.Row="3" Content="Изменить"  HorizontalAlignment="Center" Click="Button_AddComment_Click" />
+            <Button Grid.Column="1" Grid.Row="4" Content="Отмена"  HorizontalAlignment="Center" Click="Button_Click_2" />
 
         </Grid>
 
