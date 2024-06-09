@@ -117,6 +117,9 @@
     <Compile Include="RequestsList.xaml.cs">
       <DependentUpon>RequestsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Review.xaml.cs">
+      <DependentUpon>Review.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Statuses.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -166,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RequestsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Review.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
