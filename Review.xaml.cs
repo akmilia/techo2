@@ -10,8 +10,6 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using QRCoder;
 using System.Drawing;
-using System.IO;
-using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace techo

@@ -25,7 +25,6 @@ namespace techo
             InitializeComponent();
 
             LoadEverything();
-          
         }
 
         public void LoadEverything()
@@ -63,8 +62,9 @@ namespace techo
                 using (techoEntities db = new techoEntities())
                 {
                     var userIdOfMaster = currentReq.ReqClient.Select(t => t.MasterID);
-
                     string status = currentReq.Statuses.Any() ? currentReq.Statuses.First().StatusDescription : "No status available";
+                    
+                    MessageBox.Show("master id" + userIdOfMaster + "status" + status);  
 
                     mastersComboBox.Text = userIdOfMaster.ToString();
                     statusesComboBox.Text = status;
@@ -89,7 +89,8 @@ namespace techo
                             string status = statusesComboBox.SelectedItem.ToString();
                             MessageBox.Show("2 var status" + status);
                             var masterID = mastersComboBox.SelectedItem;
-                            
+                            MessageBox.Show("2 var masterID" + masterID);
+
                             if (masterID != null)
                             {
                                 int statusID = db.Statuses
