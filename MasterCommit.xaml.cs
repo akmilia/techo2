@@ -36,7 +36,7 @@ namespace techo
             {
                 var requests = db.Requests
                     .Where(r => r.ReqClient.Any(rc => rc.MasterID == 2))
-                    .Select(r => new { r.RequestID }) // Select only RequestID for the ComboBox
+                    .Select(r => new { r.RequestID })
                     .ToList();
 
                 requestsComboBox.ItemsSource = requests;
@@ -96,9 +96,7 @@ namespace techo
 
                         currentReq = db.Requests.FirstOrDefault(r => r.RequestID == selectedRequestID);
                         string com = currentReq.Comments.Where(c=> c.RequestID == selectedRequestID).Select(c=>c.Message).FirstOrDefault(); 
-
-                       
-                        Comment.Text = com;
+                                               Comment.Text = com;
 
                     }
                 }
