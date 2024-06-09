@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:techo"
         mc:Ignorable="d"
         Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <StackPanel Height="30" VerticalAlignment="Top" Background="AliceBlue">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" >
+                <Button x:Name="ExButton"  Content="Выйти" Margin="5" Click="ExButton_Click" />
+              
+            </StackPanel>
+        </StackPanel>
+        <Label HorizontalAlignment="Left">Заявки:</Label>
+        <ListBox x:FieldModifier="public" x:Name="RepairRequestsListBox" VerticalAlignment="Top" Height="300"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                       <Button x:Name="AddButton" Content="Добавить комментарий" Margin="5" Click="AddButton_Click" />
+        </StackPanel>
+    </StackPanel>
+    
 </Window>
