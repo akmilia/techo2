@@ -36,7 +36,7 @@
         <TextBlock Grid.Row="4"  x:Name="master" Text="Выбрать мастера:" Margin="10"/>
         <ComboBox Grid.Row="5" x:Name="mastersComboBox" 
                   DisplayMemberPath="UserID" SelectedValuePath="UserID" Margin="10"/>
-        <Button Grid.Row="8"  Content="Назначить ответсвенного"   Click="Button_Click"/>
-        <Button  Grid.Row="9" Content="Вернуться" Click="Button_Click_1"/>
+        <Button Grid.Row="8"  Content="Назначить ответственного"   Click="Button_Click"/>
+        <Button  Grid.Row="9" Content="Отмена" Click="Button_Click_1"/>
     </Grid>
 </Window>
