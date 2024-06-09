@@ -34,8 +34,8 @@
                   x:Name="statusesComboBox" DisplayMemberPath="StatusDescription" 
                   SelectedValuePath="StatusDescription"/>
         <TextBlock Grid.Row="5"  x:Name="master" Text="Выбрать мастера:" Margin="10"/>
-        <ComboBox Grid.Row="6" x:Name="mastersComboBox" 
-                  DisplayMemberPath="UserID" SelectedValuePath="UserID" Margin="10"/>
+        <ComboBox Grid.Row="6" x:Name="mastersComboBox" Margin="10"/>
+		
         <Button Grid.Row="7"  Content="Назначить ответсвенного"   Click="Button_Click"/>
         <Button  Grid.Row="8" Content="Вернуться" Click="Button_Click_1"/>
     </Grid>

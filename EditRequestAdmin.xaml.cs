@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -45,12 +46,19 @@ namespace techo
 
                 statusesComboBox.ItemsSource = statuses;
 
-                var masters = db.Users
-                       .Where(r => r.TypeID == 2)
-                       .Select(r => new { r.UserID  })
-                       .ToList();
+                //var masters = db.Users
+                //       .Where(r => r.TypeID == 2)
+                //       .Select(r => new { r.FIO  })
+                //       .ToList();
 
+                //mastersComboBox.ItemsSource = masters; 
+                var masters = db.Users
+                  .Where(u => u.TypeID == 2)
+                  .Select(u => new { u.UserID, u.FIO })
+                  .ToList();
                 mastersComboBox.ItemsSource = masters;
+                mastersComboBox.DisplayMemberPath = "FIO";
+                mastersComboBox.SelectedValuePath = "UserID";
             }
         }
      
@@ -61,12 +69,15 @@ namespace techo
             {
                 using (techoEntities db = new techoEntities())
                 {
-                    var userIdOfMaster = currentReq.ReqClient.Any() ? currentReq.ReqClient.First().MasterID : 0;
+                    var userIdOfMaster = currentReq.ReqClient.First().MasterID;
+                    string masterFIO = db.Users.Where(u => u.UserID == userIdOfMaster).Select(u => u.FIO).FirstOrDefault();
                     string status = currentReq.Statuses.Any() ? currentReq.Statuses.First().StatusDescription : "No status available";
-                    
-                    MessageBox.Show("master id" + userIdOfMaster + "status" + status);  
 
-                    mastersComboBox.Text = userIdOfMaster.ToString();
+                    //MessageBox.Show("master id" + userIdOfMaster + "status" + status);  
+                    //var masterFIO = currentReq.requestClientMaster.First().users.fio;
+                    //responsiblesComboBox.SelectedItem = masterFIO;
+
+                    mastersComboBox.Text = masterFIO;
                     statusesComboBox.Text = status;
 
                 }
@@ -87,27 +98,28 @@ namespace techo
                         using (techoEntities db = new techoEntities())
                         {
                             string status = statusesComboBox.SelectedItem.ToString();
-                            MessageBox.Show("2 var status  " + status);
-                            string masterID = mastersComboBox.SelectedItem.ToString();
-                            MessageBox.Show("2 var masterID  " + masterID);
-
-                                int statusID = db.Statuses
+                            //MessageBox.Show("2 var status  " + status);
+                           
+                            int ms = (int)mastersComboBox.SelectedValue;
+                            //MessageBox.Show(mastersComboBox.SelectedItem.ToString());
+                    
+                              int statusID = db.Statuses
                                     .Where(x => x.StatusDescription == status)
                                     .Select(x => x.StatusID)
                                     .FirstOrDefault();
                                 currentReq.StatusID = statusID;
-                                MessageBox.Show("4");
+                                //MessageBox.Show("4");
 
                                 var reqClient = db.ReqClient.FirstOrDefault(rc => rc.RequestID == currentReq.RequestID);
                                 if (reqClient != null)
                                 {
-                                    MessageBox.Show("5");
-                                    reqClient.MasterID = Convert.ToInt32(masterID);
-                                    MessageBox.Show("6");
+                                    //MessageBox.Show("5");
+                                    reqClient.MasterID = ms; 
+                                    //MessageBox.Show("6");
                                     db.Requests.AddOrUpdate(currentReq);
-                                    MessageBox.Show("7");
+                                    //MessageBox.Show("7");
                                     db.ReqClient.AddOrUpdate(reqClient);
-                                    MessageBox.Show("8");
+                                    //MessageBox.Show("8");
                                     db.SaveChanges();
                                     this.Close();
                                     MessageBox.Show("Request updated successfully.");
