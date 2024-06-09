@@ -15,7 +15,7 @@ namespace techo
             InitializeComponent();
             LoadHomeTechTypes();
         }
-
+        public event EventHandler RequestAdded;
         public List<HomeTechType> homeTechTypes;
 
         public void LoadHomeTechTypes()
@@ -107,6 +107,10 @@ namespace techo
                     };
 
                     AddNewRequest(newRequest);
+                    RequestAdded?.Invoke(this, EventArgs.Empty);
+
+                    this.Close();
+
                 }
             }
             catch (Exception ex)

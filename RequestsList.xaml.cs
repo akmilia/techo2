@@ -109,17 +109,22 @@ namespace techo
             EditRequest addRequest = new EditRequest(currentID);
             addRequest.Show();
         }
+        public void ReviewReequestButton_Click(object sender, RoutedEventArgs e)
+        {
+            Review addReview = new Review();
+            addReview.Show();
+        }
 
-        //private void RepairRequestsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    //MessageBox.Show("fvkgdfn");
-        //    //if (RepairRequestsListBox.SelectedItem.   is Requests selectedRequest)
-        //    //{
-        //    //    EditRequest editRequestWindow = new EditRequest(selectedRequest);
-        //    //    editRequestWindow.Show();
-        //    //}
-        //    //else MessageBox.Show("mistake");
+            //private void RepairRequestsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+            //{
+            //    //MessageBox.Show("fvkgdfn");
+            //    //if (RepairRequestsListBox.SelectedItem.   is Requests selectedRequest)
+            //    //{
+            //    //    EditRequest editRequestWindow = new EditRequest(selectedRequest);
+            //    //    editRequestWindow.Show();
+            //    //}
+            //    //else MessageBox.Show("mistake");
 
-        //}
-    }
+            //}
+        }
 }
