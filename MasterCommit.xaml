@@ -5,24 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:techo"
         mc:Ignorable="d"
-        Title="MasterComments" Height="450" Width="800">
-   
-        <Grid Margin="30" VerticalAlignment="Center" Background="White">
+        Title="MasterComments" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.2*"/>
+
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+
             </Grid.RowDefinitions>
-           
-            <Label Grid.Row="1" Content="Выберите номер заявки:" />
-        <ComboBox Grid.Row="2" x:Name="RequestComboBox" DisplayMemberPath="RequestID" 
-                  SelectedValuePath="RequestID" Margin="10" SelectionChanged="RequestComboBox_SelectionChanged">  </ComboBox>
-            <Label Grid.Row="3"  Content="Комментарий:" />
-            <TextBox Grid.Row="4" Height="40" x:Name="CommentTextBox" />
-            <Button Grid.Row="5"  Content="Добавить" Click="Button_AddComment_Click"/>
+
+            <Label Grid.Column="0" Grid.Row="0" Content="Выберите заявку"/>
+            <ComboBox Grid.Column="1" Grid.Row="0" x:Name="requestsComboBox" Foreground="Black" 
+        DisplayMemberPath="RequestID" SelectedValuePath="RequestID" />
+            <Button Grid.Column="1" Grid.Row="1" Content="Выбрать" Click="Button_Click_1"/>
+
+            <Label Grid.Column="0" Grid.Row="2" Content="Комментарий "/>
+            <TextBox Grid.Column="1" Grid.Row="2" Name="Comment" Margin="0,0,0,10"/>
+
+            <Button Grid.Column="1" Grid.Row="3" Content="Изменить"  HorizontalAlignment="Left" Click="Button_AddComment_Click" />
+            <Button Grid.Column="1" Grid.Row="4" Content="Отмена"  HorizontalAlignment="Left" Click="Button_Click_2" />
+
         </Grid>
-    
+
+    </Grid>
 </Window>

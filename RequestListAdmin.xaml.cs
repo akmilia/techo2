@@ -76,5 +76,10 @@ namespace techo
             EditRequestAdmin addRequest = new EditRequestAdmin();
             addRequest.Show();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            RepairRequestsListBox.Items.Clear();    
+        }
     }
 }

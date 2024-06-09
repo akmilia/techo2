@@ -11,8 +11,7 @@ namespace techo
 {
     public partial class AutorizationWin : Window
     {
-        int currentUserId;
-
+        
         public AutorizationWin()
         {
             InitializeComponent();
@@ -48,7 +47,7 @@ namespace techo
                                 windowToOpen = new RequestListAdmin();
                                 break;
                             case 2: // Мастер
-                                windowToOpen = new MasterWindow(currentUserId);
+                                windowToOpen = new MasterWindow(id);
                                 break;
                             case 3: // Оператор
                                 windowToOpen = new RequestListAdmin();

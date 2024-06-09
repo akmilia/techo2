@@ -22,9 +22,11 @@ namespace techo
         public EditRequest(int UserID)
         {
             InitializeComponent();
-            LoadRequests(); 
+
 
             curUserID = UserID;
+            LoadRequests(); 
+
         }
 
         public void LoadRequests()

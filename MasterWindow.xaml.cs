@@ -14,16 +14,15 @@ using System.Windows.Shapes;
 
 namespace techo
 {
-    /// <summary>
-    /// Логика взаимодействия для MasterWindow.xaml
-    /// </summary>
+   
     public partial class MasterWindow : Window
     {
-        private int MasterID;
-        public MasterWindow(int masterID)
+        int masterID;
+        public MasterWindow(int id)
         {
             InitializeComponent();
-            this.MasterID = masterID;
+            masterID = id; 
+
             LoadRequests();
         }
 
@@ -35,15 +34,16 @@ namespace techo
                 RepairRequestsListBox.Items.Clear();
                 using (techoEntities db = new techoEntities())
                 {
-                    var requests = db.Requests.Include("Comments").ToList();
+
+                    var requests = db.Requests.Where(r => r.ReqClient.Any(rc => rc.MasterID == masterID)).ToList();
+                    StringBuilder messageBuilder = new StringBuilder();
 
                     foreach (var request in requests)
                     {
-                        StringBuilder messageBuilder = new StringBuilder();
-
                         string HomeTechType = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechType1 : "";
                         string homeTechModel = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechModel : "";
                         string statusDescription = request.Statuses.Any() ? request.Statuses.First().StatusDescription : "";
+                        string com = request.Comments.Any() ? request.Comments.First().Message : "";
 
                         messageBuilder.AppendLine($"Request currentID: {request.RequestID}");
                         messageBuilder.AppendLine($"Start Date: {request.StartDate}");
@@ -52,19 +52,24 @@ namespace techo
                         messageBuilder.AppendLine($"Problem Description: {request.ProblemDescription}");
                         messageBuilder.AppendLine($"Repair Parts: {request.RepairParts}");
                         messageBuilder.AppendLine($"Status Description: {statusDescription}");
-
-                        // Добавляем комментарии к сообщению
-                        messageBuilder.AppendLine("Comments:");
-                        foreach (var comment in request.Comments)
-                        {
-                            messageBuilder.AppendLine($"- {comment.Message}");
-                        }
-
+                        messageBuilder.AppendLine($"Comment: {com}");
                         messageBuilder.AppendLine();
 
-                        RepairRequestsListBox.Items.Add(messageBuilder.ToString());
+                        RepairRequestsListBox.Items.Add(
+                            $"Request currentID: {request.RequestID}\n" +
+                            $"Start Date: {request.StartDate}\n" +
+                            $"Home Tech Type: {HomeTechType}\n" +
+                            $"Home Tech Model: {homeTechModel}\n" +
+                            $"Problem Description: {request.ProblemDescription}\n" +
+                            $"Repair Parts: {request.RepairParts}\n" +
+                            $"Status Description: {statusDescription}\n" + 
+                            $"Comment: {com} \n\n"
+                        );
+
+
                     }
                 }
+               
             }
             catch (Exception ex)
             {
@@ -75,16 +80,15 @@ namespace techo
 
     }
 
-        private void ExButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            MasterCommit requestsMaster = new MasterCommit();
+            MasterCommit requestsMaster = new MasterCommit(masterID);
             requestsMaster.Show();
-            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RepairRequestsListBox.Items.Clear();
         }
     }
 }

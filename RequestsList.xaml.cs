@@ -55,12 +55,8 @@ namespace techo
             {
                 using (techoEntities db = new techoEntities())
                 {
-                   
-                    
-                    var requests = db.Requests.Where(r => r.ReqClient.Any(rc => rc.ClientID == currentID)).ToList();
-                   
 
-                   
+                    var requests = db.Requests.Where(r => r.ReqClient.Any(rc => rc.ClientID == currentID)).ToList();
                     StringBuilder messageBuilder = new StringBuilder();
 
                     foreach (var request in requests)
@@ -115,16 +111,9 @@ namespace techo
             addReview.Show();
         }
 
-            //private void RepairRequestsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-            //{
-            //    //MessageBox.Show("fvkgdfn");
-            //    //if (RepairRequestsListBox.SelectedItem.   is Requests selectedRequest)
-            //    //{
-            //    //    EditRequest editRequestWindow = new EditRequest(selectedRequest);
-            //    //    editRequestWindow.Show();
-            //    //}
-            //    //else MessageBox.Show("mistake");
-
-            //}
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RepairRequestsListBox.Items.Clear();
         }
+    }
 }

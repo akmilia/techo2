@@ -15,78 +15,62 @@ using System.Xml.Linq;
 
 namespace techo
 {
-    /// <summary>
-    /// Логика взаимодействия для MasterCommit.xaml
-    /// </summary>
     public partial class MasterCommit : Window
     {
-        Requests currentreq;
-        private int selectedRequestID;
-        private int masterID;
-        public MasterCommit()
+        Requests currentReq;
+        int curUserID;
+        public MasterCommit(int id)
         {
             InitializeComponent();
-            LoadData();
-            this.masterID = masterID;
+
+
+            int curUserID = id;
+            MessageBox.Show("curID" + curUserID);
+            LoadRequests();
 
         }
-        private void LoadData()
+
+        public void LoadRequests()
         {
-            try
+            using (techoEntities db = new techoEntities())
             {
-                using (var db = new techoEntities())
-                {
-                    var requests = db.Requests.ToList();
-                    foreach (var request in requests)
-                    {
-                        RequestComboBox.Items.Add($"Order #{request.RequestID}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                var requests = db.Requests
+                    .Where(r => r.ReqClient.Any(rc => rc.MasterID == 2))
+                    .Select(r => new { r.RequestID }) // Select only RequestID for the ComboBox
+                    .ToList();
+
+                requestsComboBox.ItemsSource = requests;
             }
         }
 
 
-       private void Button_AddComment_Click(object sender, RoutedEventArgs e)
+
+        private void Button_AddComment_Click(object sender, RoutedEventArgs e)
         {
-            if (RequestComboBox.SelectedItem != null)
+            if (requestsComboBox.SelectedItem != null)
             {
-                selectedRequestID = (int)RequestComboBox.SelectedValue;
+               
                 try
                 {
                     using (techoEntities db = new techoEntities())
                     {
-                        currentreq = db.Requests.FirstOrDefault(r => r.RequestID == selectedRequestID);
+                        string commentMessage = Comment.Text;
 
-                        string commentMessage = CommentTextBox.Text;
-
-                        if (string.IsNullOrWhiteSpace(commentMessage))
-                        {
-                            MessageBox.Show("Please enter a comment message.");
-                            return;
-                        }
-
+                    
                         int newCommentID = db.Comments.Any() ? db.Comments.Max(c => c.CommentID) + 1 : 1;
                         var newComment = new Comments
                         {
                             CommentID = newCommentID,
                             Message = commentMessage,
-                            RequestID = selectedRequestID,
+                            RequestID = currentReq.RequestID,
                         };
 
                         db.Comments.Add(newComment);
                         db.SaveChanges();
                         MessageBox.Show("Комментарий добавлен успешно");
 
-                        // Очистим текстовое поле после добавления комментария
-                        CommentTextBox.Text = string.Empty;
-
-                        // Обновим окно с заявками в мастере
-                        var masterWindow = Application.Current.Windows.OfType<MasterWindow>().FirstOrDefault();
-                        masterWindow?.LoadRequests();
+                        this.Close();
+                       
                     }
                 }
                 catch (Exception ex)
@@ -99,16 +83,39 @@ namespace techo
                 MessageBox.Show("Выберите номер заявки");
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-           MasterWindow requestsMaster = new MasterWindow(masterID);
-            requestsMaster.Show();
-            this.Close();
+            if (requestsComboBox.SelectedItem != null)
+            {
+                int selectedRequestID = (int)requestsComboBox.SelectedValue;
+                try
+                {
+                    using (techoEntities db = new techoEntities())
+                    {
+
+                        currentReq = db.Requests.FirstOrDefault(r => r.RequestID == selectedRequestID);
+                        string com = currentReq.Comments.Where(c=> c.RequestID == selectedRequestID).Select(c=>c.Message).FirstOrDefault(); 
+
+                       
+                        Comment.Text = com;
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите номер заявки");
+            }
         }
-
-        private void RequestComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+   
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }
