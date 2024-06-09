@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:techo"
         mc:Ignorable="d"
-        Height="450" Width="800" 
+        MaxHeight="450" MaxWidth="800" 
         WindowStartupLocation="CenterScreen">
 
 
@@ -36,7 +36,7 @@
         <TextBlock Grid.Row="5"  x:Name="master" Text="Выбрать мастера:" Margin="10"/>
         <ComboBox Grid.Row="6" x:Name="mastersComboBox" Margin="10"/>
 		
-        <Button Grid.Row="7"  Content="Назначить ответсвенного"   Click="Button_Click"/>
+        <Button Grid.Row="7"  Content="Сохранить изменения"   Click="Button_Click"/>
         <Button  Grid.Row="8" Content="Вернуться" Click="Button_Click_1"/>
     </Grid>
 </Window>
