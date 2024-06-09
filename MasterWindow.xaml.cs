@@ -88,7 +88,8 @@ namespace techo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            RepairRequestsListBox.Items.Clear();
+            LoadRequests();
+            RepairRequestsListBox.Items.Refresh();
         }
     }
 }

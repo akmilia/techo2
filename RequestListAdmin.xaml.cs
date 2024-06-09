@@ -79,7 +79,8 @@ namespace techo
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            RepairRequestsListBox.Items.Clear();    
+            LoadRequests();
+            RepairRequestsListBox.Items.Refresh();
         }
     }
 }

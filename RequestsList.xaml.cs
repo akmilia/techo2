@@ -96,7 +96,7 @@ namespace techo
         }
         public void AddRequestButton_Click(object sender, RoutedEventArgs e)
         {
-            AddRequest addRequest = new AddRequest();
+            AddRequest addRequest = new AddRequest(currentID);
             addRequest.Show();
             
         }
@@ -113,7 +113,8 @@ namespace techo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            RepairRequestsListBox.Items.Clear();
+            LoadRequests();
+            RepairRequestsListBox.Items.Refresh();
         }
     }
 }

@@ -121,8 +121,9 @@ namespace techo
                                     db.ReqClient.AddOrUpdate(reqClient);
                                     //MessageBox.Show("8");
                                     db.SaveChanges();
-                                    this.Close();
-                                    MessageBox.Show("Request updated successfully.");
+                        MessageBox.Show("Request updated successfully.");
+                        this.Close();
+                                  
                                 }
                             
                         }

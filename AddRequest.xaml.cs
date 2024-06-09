@@ -5,14 +5,15 @@ using System.Windows;
 
 namespace techo
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
+  
     public partial class AddRequest : Window
     {
-        public AddRequest()
+        int curUser; 
+        public AddRequest(int id)
         {
-            InitializeComponent();
+            InitializeComponent(); 
+
+            curUser = id;
             LoadHomeTechTypes();
         }
         public event EventHandler RequestAdded;
@@ -61,12 +62,20 @@ namespace techo
 
                 db.Requests.Add(newRequest);
                 db.SaveChanges();
+                var requestClientMaster = new ReqClient
+                {
+                    ClientID = curUser,
+                    RequestID = newRequest.RequestID
+                };
+
+                db.ReqClient.Add(requestClientMaster);
+                db.SaveChanges();
                 MessageBox.Show("Заявка успешно добавлена");
 
                 this.Close();
             }
         }
-
+ 
         public void AddButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -105,10 +114,8 @@ namespace techo
                         StartDate = DateTime.Now,
                         StatusID = 3 // Новая заявка
                     };
-
                     AddNewRequest(newRequest);
-                    RequestAdded?.Invoke(this, EventArgs.Empty);
-
+                  
                     this.Close();
 
                 }
