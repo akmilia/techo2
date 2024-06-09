@@ -19,9 +19,72 @@ namespace techo
     /// </summary>
     public partial class MasterWindow : Window
     {
-        public MasterWindow()
+        private int MasterID;
+        public MasterWindow(int masterID)
         {
             InitializeComponent();
+            this.MasterID = masterID;
+            LoadRequests();
+        }
+
+
+        public void LoadRequests()
+        {
+            try
+            {
+                RepairRequestsListBox.Items.Clear();
+                using (techoEntities db = new techoEntities())
+                {
+                    var requests = db.Requests.Include("Comments").ToList();
+
+                    foreach (var request in requests)
+                    {
+                        StringBuilder messageBuilder = new StringBuilder();
+
+                        string HomeTechType = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechType1 : "";
+                        string homeTechModel = request.HomeTechType.Any() ? request.HomeTechType.First().homeTechModel : "";
+                        string statusDescription = request.Statuses.Any() ? request.Statuses.First().StatusDescription : "";
+
+                        messageBuilder.AppendLine($"Request currentID: {request.RequestID}");
+                        messageBuilder.AppendLine($"Start Date: {request.StartDate}");
+                        messageBuilder.AppendLine($"Home Tech Type: {HomeTechType}");
+                        messageBuilder.AppendLine($"Home Tech Model: {homeTechModel}");
+                        messageBuilder.AppendLine($"Problem Description: {request.ProblemDescription}");
+                        messageBuilder.AppendLine($"Repair Parts: {request.RepairParts}");
+                        messageBuilder.AppendLine($"Status Description: {statusDescription}");
+
+                        // Добавляем комментарии к сообщению
+                        messageBuilder.AppendLine("Comments:");
+                        foreach (var comment in request.Comments)
+                        {
+                            messageBuilder.AppendLine($"- {comment.Message}");
+                        }
+
+                        messageBuilder.AppendLine();
+
+                        RepairRequestsListBox.Items.Add(messageBuilder.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка " + ex.Message);
+            }
+        
+
+
+    }
+
+        private void ExButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            MasterCommit requestsMaster = new MasterCommit();
+            requestsMaster.Show();
+            this.Close();
         }
     }
 }

@@ -11,6 +11,8 @@ namespace techo
 {
     public partial class AutorizationWin : Window
     {
+        int currentUserId;
+
         public AutorizationWin()
         {
             InitializeComponent();
@@ -36,9 +38,6 @@ namespace techo
                     {
                         MessageBox.Show("Успешно вошли в систему");
                         int id = user.UserID;
-
-
-
                         var userType = user.Users.TypeID;
                         Window windowToOpen;
                     
@@ -49,7 +48,7 @@ namespace techo
                                 windowToOpen = new RequestListAdmin();
                                 break;
                             case 2: // Мастер
-                                windowToOpen = new MasterWindow();
+                                windowToOpen = new MasterWindow(currentUserId);
                                 break;
                             case 3: // Оператор
                                 windowToOpen = new RequestListAdmin();

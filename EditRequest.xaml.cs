@@ -128,6 +128,11 @@ namespace techo
                 MessageBox.Show("Выберите номер заявки");
             }
         }
+
+        private void requestsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     } 
 
    
